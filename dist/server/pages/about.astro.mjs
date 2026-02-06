@@ -1,6 +1,10 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.17.1"><title>About | AuraLink AI Security</title><meta name="description" content="Meet the team behind AuraLink AI Security. Expert cybersecurity professionals powered by cutting-edge AI technology."><!-- Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/about.De-Qc9tV.css"></head> <body class="bg-[#020617] text-slate-200">  <main class="min-h-screen bg-[#020617]"> <!-- Navigation --> <nav class="container mx-auto px-6 py-8 flex justify-between items-center relative z-10"> <a href="/" class="flex items-center space-x-2"> <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center glow-primary"> <span class="text-black font-bold">A</span> </div> <span class="text-xl font-bold tracking-tight">Aura<span class="text-emerald-500">Link</span></span> </a> <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-400"> <a href="/" class="hover:text-emerald-400 transition-colors">Home</a> <a href="/services" class="hover:text-emerald-400 transition-colors">Services</a> <a href="/pricing" class="hover:text-emerald-400 transition-colors">Pricing</a> <a href="/about" class="text-emerald-400">About</a> <a href="/blog" class="hover:text-emerald-400 transition-colors">Intelligence</a> </div> <a href="#contact" class="bg-emerald-500 hover:bg-emerald-400 text-black px-6 py-2 rounded-full font-bold text-sm transition-all transform hover:scale-105 active:scale-95 glow-primary">
-Request Audit
-</a> </nav> <!-- Hero Section --> <section class="container mx-auto px-6 pt-20 pb-16"> <div class="max-w-4xl mx-auto text-center"> <div class="inline-block px-4 py-1.5 mb-6 border border-emerald-500/30 bg-emerald-500/10 rounded-full"> <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Our Story</span> </div> <h1 class="text-5xl md:text-6xl font-bold mb-6">
+import { e as createComponent, k as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_ur5-Flif.mjs';
+import 'piccolore';
+import { $ as $$Layout, a as $$Header } from '../chunks/Header_De95F2xK.mjs';
+export { renderers } from '../renderers.mjs';
+
+const $$About = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "About", "description": "Meet the team behind AuraLink AI Security. Expert cybersecurity professionals powered by cutting-edge AI technology." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="min-h-screen bg-[#020617]"> <!-- Navigation --> ${renderComponent($$result2, "Header", $$Header, { "currentPath": "/about" })} <!-- Hero Section --> <section class="container mx-auto px-6 pt-20 pb-16"> <div class="max-w-4xl mx-auto text-center"> <div class="inline-block px-4 py-1.5 mb-6 border border-emerald-500/30 bg-emerald-500/10 rounded-full"> <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Our Story</span> </div> <h1 class="text-5xl md:text-6xl font-bold mb-6">
 Security Experts <span class="text-gradient">Powered by AI</span> </h1> <p class="text-slate-400 text-lg leading-relaxed">
 AuraLink was founded on a simple belief: cybersecurity
                     should be proactive, not reactive. We combine human
@@ -63,6 +67,21 @@ Palo Alto Networks
 </div> <p class="text-slate-400">Average Response Time</p> </div> </div> </section>  <section class="container mx-auto px-6 py-20"> <div class="bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 rounded-3xl p-12 text-center"> <h2 class="text-4xl font-bold mb-6">Ready to Work Together?</h2> <p class="text-slate-400 text-lg mb-8 max-w-2xl mx-auto">
 Let's discuss how AuraLink can protect your organization with
                 AI-powered security.
-</p> <a href="#contact" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-xl font-bold text-lg transition-all glow-primary">
+</p> <a href="/contact" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-xl font-bold text-lg transition-all glow-primary">
 Schedule a Consultation
-</a> </div> </section>  </body></html>
+</a> </div> </section> ` })}`;
+}, "/home/devlewiso/Desktop/git/auralink.live/src/pages/about.astro", void 0);
+
+const $$file = "/home/devlewiso/Desktop/git/auralink.live/src/pages/about.astro";
+const $$url = "/about";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+    __proto__: null,
+    default: $$About,
+    file: $$file,
+    url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

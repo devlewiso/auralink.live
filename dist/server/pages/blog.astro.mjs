@@ -1,6 +1,10 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.17.1"><title>Threat Intelligence Blog | AuraLink AI Security</title><meta name="description" content="Stay informed about the latest cybersecurity threats, AI-driven defense strategies, and industry insights."><!-- Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/about.De-Qc9tV.css"></head> <body class="bg-[#020617] text-slate-200">  <main class="min-h-screen bg-[#020617]"> <!-- Navigation --> <nav class="container mx-auto px-6 py-8 flex justify-between items-center relative z-10"> <a href="/" class="flex items-center space-x-2"> <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center glow-primary"> <span class="text-black font-bold">A</span> </div> <span class="text-xl font-bold tracking-tight">Aura<span class="text-emerald-500">Link</span></span> </a> <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-400"> <a href="/" class="hover:text-emerald-400 transition-colors">Home</a> <a href="/services" class="hover:text-emerald-400 transition-colors">Services</a> <a href="/pricing" class="hover:text-emerald-400 transition-colors">Pricing</a> <a href="/about" class="hover:text-emerald-400 transition-colors">About</a> <a href="/blog" class="text-emerald-400">Intelligence</a> </div> <a href="#contact" class="bg-emerald-500 hover:bg-emerald-400 text-black px-6 py-2 rounded-full font-bold text-sm transition-all transform hover:scale-105 active:scale-95 glow-primary">
-Request Audit
-</a> </nav> <!-- Hero Section --> <section class="container mx-auto px-6 pt-20 pb-16 text-center"> <div class="inline-block px-4 py-1.5 mb-6 border border-emerald-500/30 bg-emerald-500/10 rounded-full"> <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Threat Intelligence</span> </div> <h1 class="text-5xl md:text-6xl font-bold mb-6 max-w-4xl mx-auto">
+import { e as createComponent, k as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_ur5-Flif.mjs';
+import 'piccolore';
+import { $ as $$Layout, a as $$Header } from '../chunks/Header_De95F2xK.mjs';
+export { renderers } from '../renderers.mjs';
+
+const $$Blog = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Threat Intelligence Blog", "description": "Stay informed about the latest cybersecurity threats, AI-driven defense strategies, and industry insights." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="min-h-screen bg-[#020617]"> <!-- Navigation --> ${renderComponent($$result2, "Header", $$Header, { "currentPath": "/blog" })} <!-- Hero Section --> <section class="container mx-auto px-6 pt-20 pb-16 text-center"> <div class="inline-block px-4 py-1.5 mb-6 border border-emerald-500/30 bg-emerald-500/10 rounded-full"> <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Threat Intelligence</span> </div> <h1 class="text-5xl md:text-6xl font-bold mb-6 max-w-4xl mx-auto">
 Security Insights & <span class="text-gradient">AI Analysis</span> </h1> <p class="text-slate-400 text-lg max-w-2xl mx-auto">
 Expert analysis on emerging threats, AI-driven defense
                 strategies, and the evolving cybersecurity landscape.
@@ -64,4 +68,19 @@ Get weekly threat intelligence reports and security insights
 Subscribe
 </button> </div> <p class="text-slate-500 text-xs mt-4">
 No spam. Unsubscribe anytime.
-</p> </div> </section> </main>  </body></html>
+</p> </div> </section> </main> ` })}`;
+}, "/home/devlewiso/Desktop/git/auralink.live/src/pages/blog.astro", void 0);
+
+const $$file = "/home/devlewiso/Desktop/git/auralink.live/src/pages/blog.astro";
+const $$url = "/blog";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+    __proto__: null,
+    default: $$Blog,
+    file: $$file,
+    url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
