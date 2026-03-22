@@ -44,8 +44,42 @@ const {
 
 			gtag("config", "G-40MN1DF52C");
 		</script>
+
+		<!-- Dialogflow Messenger -->
+		<link
+			rel="stylesheet"
+			href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css"
+		/>
+		<script
+			src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"
+		></script>
 	</head>
 	<body class="bg-[#020617] text-slate-200">
 		<slot />
+
+		<!-- Nebulosa AI Bot -->
+		<df-messenger
+			location="us-central1"
+			project-id="nebulosa-484402"
+			agent-id="0ed52d1b-0551-4adb-af10-f382100f05de"
+			language-code="en"
+			max-query-length="-1"
+		>
+			<df-messenger-chat-bubble chat-title="Nebulosa"> </df-messenger-chat-bubble>
+		</df-messenger>
+
+		<style is:global>
+			df-messenger {
+				z-index: 999;
+				position: fixed;
+				--df-messenger-font-color: #000;
+				--df-messenger-font-family: "Space Grotesk", sans-serif;
+				--df-messenger-chat-background: #f3f6fc;
+				--df-messenger-message-user-background: #d3e3fd;
+				--df-messenger-message-bot-background: #fff;
+				bottom: 16px;
+				right: 16px;
+			}
+		</style>
 	</body>
 </html>
