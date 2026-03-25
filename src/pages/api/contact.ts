@@ -9,6 +9,18 @@ export const POST: APIRoute = async ({ request }) => {
     if (!email || !email.includes('@')) return json({ error: 'Invalid email' }, 400);
     if (!message || message.length < 10) return json({ error: 'Message too short' }, 400);
 
+    const serviceMap: Record<string, string> = {
+      monitoring:  '24/7 AI Monitoring',
+      pentest:     'Penetration Testing',
+      incident:    'Incident Response',
+      audit:       'Free Security Scan',
+      compliance:  'General Inquiry',
+      zerotrust:   'General Inquiry',
+      training:    'General Inquiry',
+      other:       'General Inquiry',
+    };
+    const mappedService = serviceMap[service] ?? 'General Inquiry';
+
     const token = process.env.AIRTABLE_TOKEN;
     const base  = process.env.AIRTABLE_BASE;
     const table = process.env.AIRTABLE_TABLE;
@@ -31,7 +43,7 @@ export const POST: APIRoute = async ({ request }) => {
             'Email':            String(email).slice(0, 200),
             'Company':          String(company || '').slice(0, 100),
             'Website':          '',
-            'Service Interest': String(service || 'General Inquiry'),
+            'Service Interest': mappedService,
             'Notes':            String(message).slice(0, 2000),
             'Status':           'New',
             'Source':           'AuraLink Contact Form',
