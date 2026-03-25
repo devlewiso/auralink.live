@@ -89,6 +89,51 @@ const {
 			<df-messenger-chat-bubble chat-title="Nebulosa"> </df-messenger-chat-bubble>
 		</df-messenger>
 
+		<!-- Nebulosa Audio Player -->
+		<script>
+			(function () {
+				let currentAudio = null;
+
+				function playAudio(url) {
+					// Stop any playing audio first
+					if (currentAudio) {
+						currentAudio.pause();
+						currentAudio = null;
+					}
+					const audio = new Audio(url);
+					audio.volume = 0.85;
+					audio.play().catch(() => {}); // silently fail if blocked
+					currentAudio = audio;
+				}
+
+				function handleDFResponse(event) {
+					try {
+						const messages = event?.detail?.response?.queryResult?.responseMessages || [];
+						for (const msg of messages) {
+							const rich = msg?.payload?.richContent;
+							if (!rich) continue;
+							for (const group of rich) {
+								for (const item of group) {
+									if (item?.type === 'audio' && item?.audioUrl) {
+										playAudio(item.audioUrl);
+										return;
+									}
+								}
+							}
+						}
+					} catch (e) {}
+				}
+
+				// Wait for df-messenger to be ready
+				window.addEventListener('load', () => {
+					const dfEl = document.querySelector('df-messenger');
+					if (dfEl) {
+						dfEl.addEventListener('df-response-received', handleDFResponse);
+					}
+				});
+			})();
+		</script>
+
 		<style is:global>
 			df-messenger {
 				z-index: 999;
