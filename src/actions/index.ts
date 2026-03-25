@@ -14,7 +14,10 @@ async function saveToAirtable(fields: Record<string, string>) {
         },
         body: JSON.stringify({ records: [{ fields }] }),
     });
-    if (!res.ok) throw new Error(`Airtable error: ${res.status}`);
+    if (!res.ok) {
+        const body = await res.text();
+        throw new Error(`Airtable ${res.status}: ${body}`);
+    }
     return res.json();
 }
 
@@ -33,6 +36,7 @@ export const server = {
                 'Name':             input.name,
                 'Email':            input.email,
                 'Company':          input.company || '',
+                'Website':          '',
                 'Service Interest': input.service || 'General Inquiry',
                 'Notes':            input.message,
                 'Status':           'New',
