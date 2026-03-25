@@ -89,48 +89,95 @@ const {
 			<df-messenger-chat-bubble chat-title="Nebulosa"> </df-messenger-chat-bubble>
 		</df-messenger>
 
-		<!-- Nebulosa Audio Player -->
+		<!-- Nebulosa TTS on-demand -->
 		<script>
 			(function () {
+				const TTS_ENDPOINT = 'https://aiwebhook.nosotros.space/tts';
 				let currentAudio = null;
 
-				function playAudio(url) {
-					// Stop any playing audio first
-					if (currentAudio) {
-						currentAudio.pause();
-						currentAudio = null;
-					}
-					const audio = new Audio(url);
-					audio.volume = 0.85;
-					audio.play().catch(() => {}); // silently fail if blocked
-					currentAudio = audio;
+				function stopAudio() {
+					if (currentAudio) { currentAudio.pause(); currentAudio = null; }
 				}
 
-				function handleDFResponse(event) {
+				async function speakText(btn, text) {
+					stopAudio();
+					btn.textContent = '⏳';
+					btn.disabled = true;
 					try {
-						const messages = event?.detail?.response?.queryResult?.responseMessages || [];
-						for (const msg of messages) {
-							const rich = msg?.payload?.richContent;
-							if (!rich) continue;
-							for (const group of rich) {
-								for (const item of group) {
-									if (item?.type === 'audio' && item?.audioUrl) {
-										playAudio(item.audioUrl);
-										return;
-									}
-								}
-							}
-						}
-					} catch (e) {}
+						const res = await fetch(TTS_ENDPOINT, {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify({ text })
+						});
+						if (!res.ok) throw new Error(res.status);
+						const { audioUrl } = await res.json();
+						const audio = new Audio(audioUrl);
+						audio.volume = 0.9;
+						currentAudio = audio;
+						btn.textContent = '⏹️';
+						btn.disabled = false;
+						audio.play();
+						audio.onended = () => { btn.textContent = '🔊'; currentAudio = null; };
+						// Toggle stop
+						btn.onclick = () => { stopAudio(); btn.textContent = '🔊'; btn.onclick = null; };
+					} catch (e) {
+						btn.textContent = '🔊';
+						btn.disabled = false;
+					}
 				}
 
-				// Wait for df-messenger to be ready
-				window.addEventListener('load', () => {
+				function addSpeakButton(messageEl) {
+					if (messageEl.querySelector('.nebulosa-speak-btn')) return;
+					const text = messageEl.innerText?.trim();
+					if (!text || text.length < 5) return;
+
+					const btn = document.createElement('button');
+					btn.className = 'nebulosa-speak-btn';
+					btn.textContent = '🔊';
+					btn.title = 'Listen';
+					btn.style.cssText = 'background:none;border:none;cursor:pointer;font-size:14px;padding:2px 4px;opacity:0.6;float:right;';
+					btn.onmouseenter = () => btn.style.opacity = '1';
+					btn.onmouseleave = () => btn.style.opacity = '0.6';
+					btn.onclick = () => speakText(btn, text);
+					messageEl.prepend(btn);
+				}
+
+				function observeChat() {
 					const dfEl = document.querySelector('df-messenger');
-					if (dfEl) {
-						dfEl.addEventListener('df-response-received', handleDFResponse);
-					}
-				});
+					if (!dfEl) return;
+
+					// MutationObserver para detectar nuevos mensajes del bot
+					const observer = new MutationObserver(() => {
+						const shadow = dfEl.shadowRoot;
+						if (!shadow) return;
+						// df-messenger anida shadow roots
+						const tryFind = (root) => {
+							if (!root) return;
+							root.querySelectorAll?.('.message-text, .bot-message, [class*="bot"]').forEach(addSpeakButton);
+							root.querySelectorAll?.('*').forEach(el => {
+								if (el.shadowRoot) tryFind(el.shadowRoot);
+							});
+						};
+						tryFind(shadow);
+					});
+
+					observer.observe(dfEl, { childList: true, subtree: true });
+
+					// También escuchar el evento de respuesta
+					dfEl.addEventListener('df-response-received', () => {
+						setTimeout(() => {
+							const shadow = dfEl.shadowRoot;
+							const tryFind = (root) => {
+								if (!root) return;
+								root.querySelectorAll?.('.message-text, .bot-message, [class*="message"][class*="bot"]').forEach(addSpeakButton);
+								root.querySelectorAll?.('*').forEach(el => { if (el.shadowRoot) tryFind(el.shadowRoot); });
+							};
+							if (shadow) tryFind(shadow);
+						}, 500);
+					});
+				}
+
+				window.addEventListener('load', observeChat);
 			})();
 		</script>
 
