@@ -1,0 +1,90 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Dashboard" description="Your AuraLink security dashboard.">
+  <main class="min-h-screen bg-[#020617]">
+    <!-- Top bar -->
+    <div class="border-b border-slate-800 px-6 py-4 flex items-center justify-between">
+      <span class="text-emerald-400 font-bold text-lg">AuraLink <span class="text-white font-normal text-sm">/ Dashboard</span></span>
+      <button id="logout" class="text-slate-400 hover:text-white text-sm transition-colors">Sign out</button>
+    </div>
+
+    <div class="container mx-auto px-6 py-10 max-w-5xl">
+      <!-- Welcome -->
+      <div class="mb-10">
+        <h1 class="text-2xl font-bold mb-1">Welcome back</h1>
+        <p class="text-slate-400 text-sm">Here's an overview of your active security services.</p>
+      </div>
+
+      <!-- Active Services -->
+      <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Active Services</h2>
+      <div class="grid md:grid-cols-3 gap-5 mb-10">
+        <div class="bg-slate-900/50 border border-emerald-500/30 rounded-xl p-5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-emerald-400">24/7 AI Monitoring</span>
+            <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">Active</span>
+          </div>
+          <p class="text-slate-400 text-xs">Continuous threat detection. No anomalies detected in the last 24h.</p>
+        </div>
+        <div class="bg-slate-900/50 border border-slate-700 rounded-xl p-5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-slate-300">Penetration Testing</span>
+            <span class="text-xs bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">Scheduled</span>
+          </div>
+          <p class="text-slate-400 text-xs">Next scan: Apr 1, 2026. Report from last scan available below.</p>
+        </div>
+        <div class="bg-slate-900/50 border border-slate-700 rounded-xl p-5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-slate-300">Incident Response</span>
+            <span class="text-xs bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">On-demand</span>
+          </div>
+          <p class="text-slate-400 text-xs">Available 24/7. Response time &lt; 1 hour for critical incidents.</p>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Recent Activity</h2>
+      <div class="bg-slate-900/50 border border-slate-800 rounded-xl divide-y divide-slate-800 mb-10">
+        <div class="flex items-center justify-between px-5 py-4">
+          <div>
+            <p class="text-sm text-white">AI Scan completed — no threats detected</p>
+            <p class="text-xs text-slate-500 mt-0.5">24/7 AI Monitoring</p>
+          </div>
+          <span class="text-xs text-slate-500">Today, 6:00 AM</span>
+        </div>
+        <div class="flex items-center justify-between px-5 py-4">
+          <div>
+            <p class="text-sm text-white">Monthly security report generated</p>
+            <p class="text-xs text-slate-500 mt-0.5">Aura Sentinel</p>
+          </div>
+          <span class="text-xs text-slate-500">Mar 1, 2026</span>
+        </div>
+        <div class="flex items-center justify-between px-5 py-4">
+          <div>
+            <p class="text-sm text-white">Penetration test report delivered</p>
+            <p class="text-xs text-slate-500 mt-0.5">AI-Driven Pentesting</p>
+          </div>
+          <span class="text-xs text-slate-500">Feb 15, 2026</span>
+        </div>
+      </div>
+
+      <!-- Support -->
+      <div class="bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 rounded-xl p-6 flex items-center justify-between">
+        <div>
+          <p class="font-bold mb-1">Need help?</p>
+          <p class="text-slate-400 text-sm">Our team responds immediately to urgent threats.</p>
+        </div>
+        <a href="/contact" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-5 py-2.5 rounded-xl text-sm transition-all">
+          Contact Support
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('logout')?.addEventListener('click', () => {
+    window.location.href = '/login';
+  });
+</script>
