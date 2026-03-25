@@ -2,9 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import ParticlesBackground from "../components/react/ParticlesBackground";
 import Header from "../components/Header.astro";
-import { actions } from "astro:actions";
-
-const result = Astro.getActionResult(actions.contactForm);
 ---
 
 <Layout
@@ -64,34 +61,14 @@ const result = Astro.getActionResult(actions.contactForm);
                 >
                     <h2 class="text-3xl font-bold mb-6">Send us a message</h2>
 
-                    {
-                        result?.data && (
-                            <div class="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg">
-                                <p class="text-emerald-400 font-medium">
-                                    {result.data.message}
-                                </p>
-                            </div>
-                        )
-                    }
+                    <div id="form-success" class="hidden mb-6 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg">
+                        <p class="text-emerald-400 font-medium">✅ Thank you! We'll get back to you within 24 hours.</p>
+                    </div>
+                    <div id="form-error" class="hidden mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+                        <p class="text-red-400 font-medium" id="form-error-msg">Something went wrong. Please try again.</p>
+                    </div>
 
-                    {
-                        result?.error && (
-                            <div class="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
-                                <p class="text-red-400 font-medium">
-                                    {result.error.fields?.name?.[0] ||
-                                        result.error.fields?.email?.[0] ||
-                                        result.error.fields?.message?.[0] ||
-                                        "Please check your form and try again."}
-                                </p>
-                            </div>
-                        )
-                    }
-
-                    <form
-                        method="POST"
-                        action={actions.contactForm}
-                        class="space-y-6"
-                    >
+                    <form id="contact-form" class="space-y-6">
                         <div>
                             <label
                                 for="name"
@@ -426,6 +403,48 @@ const result = Astro.getActionResult(actions.contactForm);
                 </div>
             </div>
         </section>
+
+        <!-- Contact Form Script -->
+        <script>
+            const form = document.getElementById('contact-form') as HTMLFormElement;
+            const success = document.getElementById('form-success')!;
+            const errorBox = document.getElementById('form-error')!;
+            const errorMsg = document.getElementById('form-error-msg')!;
+            const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+            form?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                success.classList.add('hidden');
+                errorBox.classList.add('hidden');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                const data = Object.fromEntries(new FormData(form));
+
+                try {
+                    const res = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                    });
+                    const json = await res.json();
+
+                    if (res.ok && json.success) {
+                        form.reset();
+                        success.classList.remove('hidden');
+                    } else {
+                        errorMsg.textContent = json.error || 'Something went wrong.';
+                        errorBox.classList.remove('hidden');
+                    }
+                } catch {
+                    errorMsg.textContent = 'Network error. Please try again.';
+                    errorBox.classList.remove('hidden');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }
+            });
+        </script>
 
         <!-- FAQ Section -->
         <section class="container mx-auto px-6 py-16 relative z-10">
