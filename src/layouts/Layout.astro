@@ -89,54 +89,35 @@ const {
 			<df-messenger-chat-bubble chat-title="Nebulosa"> </df-messenger-chat-bubble>
 		</df-messenger>
 
-		<!-- Nebulosa TTS — auto playback on bot response -->
+		<!-- Nebulosa TTS — reproduce audioUrl del payload de Dialogflow -->
 		<script>
 			(function () {
-				const TTS_ENDPOINT = 'https://aiwebhook.nosotros.space/tts';
 				let currentAudio = null;
-				let ttsEnabled = true; // user can toggle
-
-				function stopAudio() {
-					if (currentAudio) { currentAudio.pause(); currentAudio = null; }
-				}
-
-				async function speak(text) {
-					if (!ttsEnabled || !text) return;
-					stopAudio();
-					try {
-						const res = await fetch(TTS_ENDPOINT, {
-							method: 'POST',
-							headers: { 'Content-Type': 'application/json' },
-							body: JSON.stringify({ text })
-						});
-						if (!res.ok) return; // silently fail (rate limit, etc.)
-						const { audioUrl } = await res.json();
-						if (!audioUrl) return;
-						const audio = new Audio(audioUrl);
-						audio.volume = 0.9;
-						currentAudio = audio;
-						audio.play().catch(() => {});
-						audio.onended = () => { currentAudio = null; };
-					} catch (e) {}
-				}
-
-				function extractText(event) {
-					try {
-						const msgs = event?.detail?.response?.queryResult?.responseMessages || [];
-						return msgs
-							.filter(m => m.text?.text?.length)
-							.flatMap(m => m.text.text)
-							.join('. ')
-							.trim();
-					} catch (e) { return ''; }
-				}
 
 				window.addEventListener('load', () => {
 					const dfEl = document.querySelector('df-messenger');
 					if (!dfEl) return;
+
 					dfEl.addEventListener('df-response-received', (e) => {
-						const text = extractText(e);
-						if (text) speak(text);
+						try {
+							const msgs = e?.detail?.response?.queryResult?.responseMessages || [];
+							for (const msg of msgs) {
+								const rich = msg?.payload?.richContent;
+								if (!rich) continue;
+								for (const group of rich) {
+									for (const item of group) {
+										if (item?.type === 'audio' && item?.audioUrl) {
+											if (currentAudio) currentAudio.pause();
+											currentAudio = new Audio(item.audioUrl);
+											currentAudio.volume = 0.9;
+											currentAudio.play().catch(() => {});
+											currentAudio.onended = () => { currentAudio = null; };
+											return;
+										}
+									}
+								}
+							}
+						} catch (e) {}
 					});
 				});
 			})();
