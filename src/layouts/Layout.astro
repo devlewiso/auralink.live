@@ -94,20 +94,50 @@ const {
 			(function () {
 				const TTS_ENDPOINT = 'https://aiwebhook.nosotros.space/tts';
 				let currentAudio = null;
+				let lastBotText = '';
+
+				// Botón flotante sobre el widget
+				const btn = document.createElement('button');
+				btn.id = 'nebulosa-tts-btn';
+				btn.textContent = '🔊';
+				btn.title = 'Escuchar respuesta';
+				btn.style.cssText = `
+					display: none;
+					position: fixed;
+					bottom: 88px;
+					right: 20px;
+					z-index: 1000;
+					background: #1e40af;
+					color: white;
+					border: none;
+					border-radius: 50%;
+					width: 40px;
+					height: 40px;
+					font-size: 18px;
+					cursor: pointer;
+					box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+					transition: background 0.2s;
+				`;
+				document.body.appendChild(btn);
 
 				function stopAudio() {
 					if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+					btn.textContent = '🔊';
+					btn.style.background = '#1e40af';
 				}
 
-				async function speakText(btn, text) {
-					stopAudio();
+				btn.onclick = async () => {
+					if (currentAudio) { stopAudio(); return; }
+					if (!lastBotText) return;
+
 					btn.textContent = '⏳';
 					btn.disabled = true;
+
 					try {
 						const res = await fetch(TTS_ENDPOINT, {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
-							body: JSON.stringify({ text })
+							body: JSON.stringify({ text: lastBotText })
 						});
 						if (!res.ok) throw new Error(res.status);
 						const { audioUrl } = await res.json();
@@ -115,69 +145,39 @@ const {
 						audio.volume = 0.9;
 						currentAudio = audio;
 						btn.textContent = '⏹️';
+						btn.style.background = '#dc2626';
 						btn.disabled = false;
 						audio.play();
-						audio.onended = () => { btn.textContent = '🔊'; currentAudio = null; };
-						// Toggle stop
-						btn.onclick = () => { stopAudio(); btn.textContent = '🔊'; btn.onclick = null; };
+						audio.onended = stopAudio;
 					} catch (e) {
 						btn.textContent = '🔊';
+						btn.style.background = '#1e40af';
 						btn.disabled = false;
 					}
-				}
+				};
 
-				function addSpeakButton(messageEl) {
-					if (messageEl.querySelector('.nebulosa-speak-btn')) return;
-					const text = messageEl.innerText?.trim();
-					if (!text || text.length < 5) return;
-
-					const btn = document.createElement('button');
-					btn.className = 'nebulosa-speak-btn';
-					btn.textContent = '🔊';
-					btn.title = 'Listen';
-					btn.style.cssText = 'background:none;border:none;cursor:pointer;font-size:14px;padding:2px 4px;opacity:0.6;float:right;';
-					btn.onmouseenter = () => btn.style.opacity = '1';
-					btn.onmouseleave = () => btn.style.opacity = '0.6';
-					btn.onclick = () => speakText(btn, text);
-					messageEl.prepend(btn);
-				}
-
-				function observeChat() {
+				// Capturar el texto del último mensaje del bot
+				window.addEventListener('load', () => {
 					const dfEl = document.querySelector('df-messenger');
 					if (!dfEl) return;
 
-					// MutationObserver para detectar nuevos mensajes del bot
-					const observer = new MutationObserver(() => {
-						const shadow = dfEl.shadowRoot;
-						if (!shadow) return;
-						// df-messenger anida shadow roots
-						const tryFind = (root) => {
-							if (!root) return;
-							root.querySelectorAll?.('.message-text, .bot-message, [class*="bot"]').forEach(addSpeakButton);
-							root.querySelectorAll?.('*').forEach(el => {
-								if (el.shadowRoot) tryFind(el.shadowRoot);
-							});
-						};
-						tryFind(shadow);
+					dfEl.addEventListener('df-response-received', (e) => {
+						try {
+							const msgs = e?.detail?.response?.queryResult?.responseMessages || [];
+							const texts = msgs
+								.filter(m => m.text?.text?.length)
+								.flatMap(m => m.text.text)
+								.join(' ');
+							if (texts.trim()) {
+								lastBotText = texts.trim();
+								stopAudio();
+								btn.style.display = 'flex';
+								btn.style.alignItems = 'center';
+								btn.style.justifyContent = 'center';
+							}
+						} catch (e) {}
 					});
-
-					observer.observe(dfEl, { childList: true, subtree: true });
-
-					// También escuchar el evento de respuesta
-					dfEl.addEventListener('df-response-received', () => {
-						setTimeout(() => {
-							const shadow = dfEl.shadowRoot;
-							const tryFind = (root) => {
-								if (!root) return;
-								root.querySelectorAll?.('.message-text, .bot-message, [class*="message"][class*="bot"]').forEach(addSpeakButton);
-								root.querySelectorAll?.('*').forEach(el => { if (el.shadowRoot) tryFind(el.shadowRoot); });
-							};
-							if (shadow) tryFind(shadow);
-						}, 500);
-					});
-				}
-
-				window.addEventListener('load', observeChat);
+				});
 			})();
 		</script>
 
