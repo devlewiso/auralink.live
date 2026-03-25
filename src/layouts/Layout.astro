@@ -89,93 +89,54 @@ const {
 			<df-messenger-chat-bubble chat-title="Nebulosa"> </df-messenger-chat-bubble>
 		</df-messenger>
 
-		<!-- Nebulosa TTS on-demand -->
+		<!-- Nebulosa TTS — auto playback on bot response -->
 		<script>
 			(function () {
 				const TTS_ENDPOINT = 'https://aiwebhook.nosotros.space/tts';
 				let currentAudio = null;
-				let lastBotText = '';
-
-				// Botón flotante sobre el widget
-				const btn = document.createElement('button');
-				btn.id = 'nebulosa-tts-btn';
-				btn.textContent = '🔊';
-				btn.title = 'Escuchar respuesta';
-				btn.style.cssText = `
-					display: none;
-					position: fixed;
-					bottom: 88px;
-					right: 20px;
-					z-index: 1000;
-					background: #1e40af;
-					color: white;
-					border: none;
-					border-radius: 50%;
-					width: 40px;
-					height: 40px;
-					font-size: 18px;
-					cursor: pointer;
-					box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-					transition: background 0.2s;
-				`;
-				document.body.appendChild(btn);
+				let ttsEnabled = true; // user can toggle
 
 				function stopAudio() {
 					if (currentAudio) { currentAudio.pause(); currentAudio = null; }
-					btn.textContent = '🔊';
-					btn.style.background = '#1e40af';
 				}
 
-				btn.onclick = async () => {
-					if (currentAudio) { stopAudio(); return; }
-					if (!lastBotText) return;
-
-					btn.textContent = '⏳';
-					btn.disabled = true;
-
+				async function speak(text) {
+					if (!ttsEnabled || !text) return;
+					stopAudio();
 					try {
 						const res = await fetch(TTS_ENDPOINT, {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
-							body: JSON.stringify({ text: lastBotText })
+							body: JSON.stringify({ text })
 						});
-						if (!res.ok) throw new Error(res.status);
+						if (!res.ok) return; // silently fail (rate limit, etc.)
 						const { audioUrl } = await res.json();
+						if (!audioUrl) return;
 						const audio = new Audio(audioUrl);
 						audio.volume = 0.9;
 						currentAudio = audio;
-						btn.textContent = '⏹️';
-						btn.style.background = '#dc2626';
-						btn.disabled = false;
-						audio.play();
-						audio.onended = stopAudio;
-					} catch (e) {
-						btn.textContent = '🔊';
-						btn.style.background = '#1e40af';
-						btn.disabled = false;
-					}
-				};
+						audio.play().catch(() => {});
+						audio.onended = () => { currentAudio = null; };
+					} catch (e) {}
+				}
 
-				// Capturar el texto del último mensaje del bot
+				function extractText(event) {
+					try {
+						const msgs = event?.detail?.response?.queryResult?.responseMessages || [];
+						return msgs
+							.filter(m => m.text?.text?.length)
+							.flatMap(m => m.text.text)
+							.join('. ')
+							.trim();
+					} catch (e) { return ''; }
+				}
+
 				window.addEventListener('load', () => {
 					const dfEl = document.querySelector('df-messenger');
 					if (!dfEl) return;
-
 					dfEl.addEventListener('df-response-received', (e) => {
-						try {
-							const msgs = e?.detail?.response?.queryResult?.responseMessages || [];
-							const texts = msgs
-								.filter(m => m.text?.text?.length)
-								.flatMap(m => m.text.text)
-								.join(' ');
-							if (texts.trim()) {
-								lastBotText = texts.trim();
-								stopAudio();
-								btn.style.display = 'flex';
-								btn.style.alignItems = 'center';
-								btn.style.justifyContent = 'center';
-							}
-						} catch (e) {}
+						const text = extractText(e);
+						if (text) speak(text);
 					});
 				});
 			})();
