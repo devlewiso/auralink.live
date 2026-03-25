@@ -57,7 +57,7 @@ export default function SecurityScanner() {
         setLastScanTime(now);
 
         try {
-            const res = await fetch('https://aiwebhook.nosotros.space/scan', {
+            const res = await fetch('/api/scan', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ domain: sanitizedDomain }),
