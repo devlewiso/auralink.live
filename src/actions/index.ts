@@ -1,9 +1,9 @@
 import { defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
 
-const AIRTABLE_TOKEN = import.meta.env.AIRTABLE_TOKEN;
-const AIRTABLE_BASE  = import.meta.env.AIRTABLE_BASE;
-const AIRTABLE_TABLE = import.meta.env.AIRTABLE_TABLE;
+const AIRTABLE_TOKEN = import.meta.env.AIRTABLE_TOKEN ?? process.env.AIRTABLE_TOKEN;
+const AIRTABLE_BASE  = import.meta.env.AIRTABLE_BASE  ?? process.env.AIRTABLE_BASE;
+const AIRTABLE_TABLE = import.meta.env.AIRTABLE_TABLE ?? process.env.AIRTABLE_TABLE;
 
 async function saveToAirtable(fields: Record<string, string>) {
     const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
