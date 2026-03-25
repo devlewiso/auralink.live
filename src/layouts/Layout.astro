@@ -89,39 +89,6 @@ const {
 			<df-messenger-chat-bubble chat-title="Nebulosa"> </df-messenger-chat-bubble>
 		</df-messenger>
 
-		<!-- Nebulosa TTS — reproduce audioUrl del payload de Dialogflow -->
-		<script>
-			(function () {
-				let currentAudio = null;
-
-				window.addEventListener('load', () => {
-					const dfEl = document.querySelector('df-messenger');
-					if (!dfEl) return;
-
-					dfEl.addEventListener('df-response-received', (e) => {
-						try {
-							const msgs = e?.detail?.response?.queryResult?.responseMessages || [];
-							for (const msg of msgs) {
-								const rich = msg?.payload?.richContent;
-								if (!rich) continue;
-								for (const group of rich) {
-									for (const item of group) {
-										if (item?.type === 'audio' && item?.audioUrl) {
-											if (currentAudio) currentAudio.pause();
-											currentAudio = new Audio(item.audioUrl);
-											currentAudio.volume = 0.9;
-											currentAudio.play().catch(() => {});
-											currentAudio.onended = () => { currentAudio = null; };
-											return;
-										}
-									}
-								}
-							}
-						} catch (e) {}
-					});
-				});
-			})();
-		</script>
 
 		<style is:global>
 			df-messenger {
