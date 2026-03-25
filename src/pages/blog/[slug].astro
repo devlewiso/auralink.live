@@ -1,0 +1,125 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect('/blog');
+
+const entry = await getEntry('blog', slug);
+if (!entry) return Astro.redirect('/blog');
+
+const { Content } = await entry.render();
+const { title, description, pubDate, author, category, tags, image } = entry.data;
+
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric'
+});
+---
+
+<Layout title={title} description={description}>
+  <!-- Open Graph específico del post -->
+  <Fragment slot="head">
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content={pubDate.toISOString()} />
+    <meta property="article:author" content={author} />
+    {tags.map(tag => <meta property="article:tag" content={tag} />)}
+    {image && <meta property="og:image" content={image} />}
+    <!-- Schema.org Article -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": title,
+      "description": description,
+      "datePublished": pubDate.toISOString(),
+      "author": { "@type": "Organization", "name": author },
+      "publisher": {
+        "@type": "Organization",
+        "name": "AuraLink AI Security",
+        "url": "https://auralink.live"
+      },
+      "image": image || "https://auralink.live/og-image.png",
+      "url": `https://auralink.live/blog/${slug}`
+    })} />
+  </Fragment>
+
+  <main class="min-h-screen bg-[#020617]">
+    <Header currentPath="/blog" />
+
+    <!-- Hero del post -->
+    <section class="container mx-auto px-6 pt-20 pb-10 max-w-4xl">
+      <div class="mb-6 flex items-center gap-3">
+        <a href="/blog" class="text-slate-500 hover:text-emerald-400 text-sm transition-colors">
+          ← Intelligence
+        </a>
+        <span class="text-slate-700">/</span>
+        <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-bold uppercase">
+          {category}
+        </span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{title}</h1>
+      <p class="text-slate-400 text-xl mb-8 leading-relaxed">{description}</p>
+
+      <div class="flex items-center gap-6 text-sm text-slate-500 pb-8 border-b border-slate-800">
+        <span>By <strong class="text-slate-300">{author}</strong></span>
+        <span>{formattedDate}</span>
+      </div>
+    </section>
+
+    <!-- Hero image -->
+    {image && (
+      <div class="container mx-auto px-6 max-w-4xl mb-10">
+        <img
+          src={image}
+          alt={title}
+          class="w-full rounded-2xl border border-slate-800 object-cover max-h-96"
+          loading="eager"
+        />
+      </div>
+    )}
+
+    <!-- Contenido del post -->
+    <article class="container mx-auto px-6 max-w-4xl pb-20">
+      <div class="prose prose-invert prose-emerald max-w-none
+        prose-headings:font-bold prose-headings:text-white
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:border-b prose-h2:border-slate-800 prose-h2:pb-3
+        prose-h3:text-xl prose-h3:text-emerald-400
+        prose-p:text-slate-400 prose-p:leading-relaxed prose-p:mb-6
+        prose-strong:text-white
+        prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-emerald-300
+        prose-li:text-slate-400
+        prose-ul:my-4 prose-li:my-1
+        prose-blockquote:border-emerald-500 prose-blockquote:text-slate-400
+        prose-hr:border-slate-800
+        prose-code:text-emerald-400 prose-code:bg-slate-900 prose-code:px-1 prose-code:rounded">
+        <Content />
+      </div>
+
+      <!-- Tags -->
+      {tags.length > 0 && (
+        <div class="mt-12 pt-8 border-t border-slate-800 flex flex-wrap gap-2">
+          {tags.map(tag => (
+            <span class="px-3 py-1 bg-slate-800 text-slate-400 rounded-full text-xs">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <!-- CTA final -->
+      <div class="mt-12 p-8 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 rounded-2xl text-center">
+        <h3 class="text-2xl font-bold mb-3">Is Your Business Protected?</h3>
+        <p class="text-slate-400 mb-6">Run a free security scan on your website — instant results, no credit card required.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/#scanner" class="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-3 rounded-xl font-bold transition-all">
+            Free Security Scan
+          </a>
+          <a href="/contact" class="border border-emerald-500 text-emerald-400 px-8 py-3 rounded-xl font-bold hover:bg-emerald-500/10 transition-all">
+            Talk to an Expert
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>
