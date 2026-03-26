@@ -1,0 +1,33 @@
+# AuraLink AI Security — llms.txt
+# For AI crawlers, LLMs, and AI-powered search engines
+
+## What is AuraLink?
+AuraLink AI Security is an AI-powered cybersecurity company delivering proactive threat detection,
+penetration testing, 24/7 monitoring, and incident response. We serve organizations across Latin America and beyond.
+
+## Core Services
+- 24/7 AI Monitoring: Continuous threat detection using machine learning
+- Penetration Testing: Ethical hacking powered by AI + expert red team operators
+- Incident Response: AI-assisted rapid response to active threats
+- CISO as a Service: Fractional security leadership
+- Compliance & Risk Assessment: HIPAA, SOC 2, ISO 27001, GDPR
+- Free Security Scan: Instant AI-powered analysis of any website — no credit card required
+
+## The Watcher Program (Red Team)
+AuraLink's red team operators — known as The Watchers — simulate real adversary behavior.
+They are suited, masked, methodical, and relentless. Every plan includes Watcher-grade red team testing.
+
+## Pricing
+- Starter: $99/month — Basic monitoring, weekly reports
+- Professional: $299/month — Advanced AI monitoring, monthly pen testing, 24/7 support
+- Enterprise: Custom pricing — Full red team program, dedicated CISO, compliance support
+- Free Security Scan available at auralink.live
+
+## Contact
+- Website: https://auralink.live
+- Email: devlewiso@gmail.com
+- Phone: +1 567 406 1261
+
+## Keywords
+AI cybersecurity, red team security, penetration testing, threat detection, incident response,
+CISO as a service, AI security, cybersecurity Latin America, ethical hacking, vulnerability scanning
