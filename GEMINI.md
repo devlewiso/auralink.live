@@ -84,10 +84,9 @@ image: "/blog/slug-name.jpg"   # Always local, generated with fal.ai
 - **Unique angle:** Every post must have a cybersecurity perspective no generic tech blog has
 
 ### Images
-- Generated with **fal.ai Flux Dev** model
 - Saved to `public/blog/[slug].jpg`
 - Referenced as `/blog/[slug].jpg` in frontmatter
-- Prompt style: cinematic, dark atmosphere, emerald/cyan lighting, 16:9
+- Style: cinematic, dark atmosphere, emerald/cyan lighting, 16:9
 
 ### Existing Posts
 | Slug | Topic | Category |
@@ -111,4 +110,3 @@ image: "/blog/slug-name.jpg"   # Always local, generated with fal.ai
 2. **Strict TypeScript** — No `any`, interfaces defined for all API responses and props
 3. **i18n mandatory** — All user-facing strings go through translation files
 4. **Security dogfooding** — DOMPurify for inputs, CSP headers enforced, all form data validated
-5. **No hardcoded secrets** — Environment variables only, never in source code or this file
