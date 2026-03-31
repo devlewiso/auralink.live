@@ -6,7 +6,7 @@ author: "AuraLink Security Team"
 category: "Tech Culture"
 tags: ["AI", "car audio", "future", "technology", "music", "in-car experience"]
 featured: false
-image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=630&fit=crop&q=80"
+image: "/blog/ai-car-audio-future.jpg"
 ---
 
 Nobody talks about this enough.
