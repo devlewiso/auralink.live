@@ -303,6 +303,37 @@ import Header from "../components/Header.astro";
                         </div>
                     </div>
 
+                    <!-- Calendly Booking -->
+                    <div
+                        class="bg-slate-900/50 backdrop-blur-sm border border-emerald-500/30 rounded-2xl p-8"
+                    >
+                        <div class="text-center mb-6">
+                            <div class="inline-block px-3 py-1 mb-3 border border-emerald-500/30 bg-emerald-500/10 rounded-full">
+                                <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Book a Call</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Free 30-Min Consultation</h3>
+                            <p class="text-slate-400 text-sm">
+                                Skip the form — book a direct call with Iran Trinidad and get an instant security roadmap for your business.
+                            </p>
+                        </div>
+                        <!-- Calendly inline widget -->
+                        <!-- IMPORTANT: Replace YOUR_CALENDLY_USERNAME with your real Calendly link -->
+                        <div
+                            class="calendly-inline-widget"
+                            data-url="https://calendly.com/auralink-security/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0f172a&text_color=e2e8f0&primary_color=10b981"
+                            style="min-width:280px;height:420px;"
+                        ></div>
+                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async is:inline></script>
+                        <p class="text-center text-slate-500 text-xs mt-4">
+                            Prefer WhatsApp?
+                            <a href="https://wa.me/15674061261?text=Hi%20AuraLink!%20I%27d%20like%20to%20book%20a%20free%20consultation."
+                               target="_blank"
+                               class="text-emerald-400 hover:text-emerald-300 underline">
+                                Message us directly →
+                            </a>
+                        </p>
+                    </div>
+
                     <!-- Quick Links -->
                     <div
                         class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl p-8"
