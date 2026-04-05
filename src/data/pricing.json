@@ -5,8 +5,8 @@
       "name": "Starter",
       "badge": "Essential",
       "description": "For landing pages, corporate sites, and small web apps",
-      "scope": "10 – 15 security checks across your external attack surface",
-      "scopeTooltip": "Each check covers a distinct vulnerability category: injections, headers, SSL, XSS, exposed endpoints, and more.",
+      "scope": "15 AI-powered security checks across your external attack surface",
+      "scopeTooltip": "Each check targets a distinct vulnerability category. Our AI runs every check automatically and a human analyst validates the findings before delivery.",
       "price": "$399",
       "priceNote": "one-time · single project",
       "delivery": "3 – 5 business days",
@@ -19,6 +19,83 @@
         "Exposed Endpoints Scan",
         "PDF Security Report with Findings",
         "Dashboard Access (90 days)"
+      ],
+      "checks": [
+        {
+          "id": 1,
+          "name": "SSL/TLS Certificate Audit",
+          "detail": "Validates certificate chain, expiry date, protocol versions (TLS 1.2/1.3), and cipher suite strength."
+        },
+        {
+          "id": 2,
+          "name": "HTTP Security Headers Scan",
+          "detail": "Checks for HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, and Permissions-Policy."
+        },
+        {
+          "id": 3,
+          "name": "Content Security Policy (CSP) Analysis",
+          "detail": "AI detects missing or bypassable CSP directives that allow script injection from untrusted sources."
+        },
+        {
+          "id": 4,
+          "name": "SQL Injection Detection",
+          "detail": "AI fuzzes all URL parameters and form inputs for SQL injection patterns — including blind and time-based variants."
+        },
+        {
+          "id": 5,
+          "name": "Cross-Site Scripting (XSS) Detection",
+          "detail": "Scans all input surfaces for reflected and DOM-based XSS vulnerabilities using AI-generated payloads."
+        },
+        {
+          "id": 6,
+          "name": "Exposed Sensitive Files Check",
+          "detail": "Scans for publicly accessible .env, .git, /admin, backup files, and configuration files left exposed by mistake."
+        },
+        {
+          "id": 7,
+          "name": "Directory & Path Enumeration",
+          "detail": "Detects open directory listings and hidden routes that reveal internal application structure."
+        },
+        {
+          "id": 8,
+          "name": "Subdomain Takeover Risk",
+          "detail": "Enumerates all subdomains and flags dangling DNS records that an attacker could register and hijack."
+        },
+        {
+          "id": 9,
+          "name": "DNS Security Review",
+          "detail": "Validates SPF, DMARC, and DKIM email authentication records and checks zone transfer protections."
+        },
+        {
+          "id": 10,
+          "name": "Open Ports & Services Fingerprinting",
+          "detail": "Maps all external-facing services and detects unnecessary or misconfigured ports that expand your attack surface."
+        },
+        {
+          "id": 11,
+          "name": "Cookie Security Flags Audit",
+          "detail": "Verifies that all cookies carry HttpOnly, Secure, and SameSite attributes to prevent session hijacking."
+        },
+        {
+          "id": 12,
+          "name": "CORS Policy Review",
+          "detail": "Detects overly permissive cross-origin resource sharing configurations that allow unauthorized data access."
+        },
+        {
+          "id": 13,
+          "name": "Information Disclosure Detection",
+          "detail": "AI hunts for server banners, stack traces, version leaks, and error messages that give attackers a roadmap."
+        },
+        {
+          "id": 14,
+          "name": "Third-Party Script Risk Assessment",
+          "detail": "Catalogs every external script loaded by your site and flags high-risk or unrecognized sources."
+        },
+        {
+          "id": 15,
+          "name": "Clickjacking Vulnerability Check",
+          "detail": "Tests iframe embedding protection via X-Frame-Options and CSP frame-ancestors directives."
+        }
       ],
       "notIncluded": "No re-test included — see Business plan",
       "cta": "Get Started",
