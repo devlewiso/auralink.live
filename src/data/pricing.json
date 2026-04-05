@@ -1,0 +1,122 @@
+{
+  "pentestPackages": [
+    {
+      "id": "starter",
+      "name": "Starter",
+      "badge": "Essential",
+      "description": "For landing pages, corporate sites, and small web apps",
+      "scope": "10 – 15 security checks across your external attack surface",
+      "scopeTooltip": "Each check covers a distinct vulnerability category: injections, headers, SSL, XSS, exposed endpoints, and more.",
+      "price": "$399",
+      "priceNote": "one-time · single project",
+      "delivery": "3 – 5 business days",
+      "featured": false,
+      "deliverables": [
+        "OWASP Top 10 Basic Coverage",
+        "SSL/TLS Certificate Audit",
+        "Security Headers Check",
+        "XSS & SQL Injection Detection",
+        "Exposed Endpoints Scan",
+        "PDF Security Report with Findings",
+        "Dashboard Access (90 days)"
+      ],
+      "notIncluded": "No re-test included — see Business plan",
+      "cta": "Get Started",
+      "ctaStyle": "outline"
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "badge": "Most Popular",
+      "description": "For web apps with login, payments, or user data",
+      "scope": "30 – 40 security checks covering your full application layer",
+      "scopeTooltip": "Covers everything in Starter plus authenticated flows, business logic, API endpoints, and session management.",
+      "price": "$799",
+      "priceNote": "one-time · single project",
+      "delivery": "7 – 10 business days",
+      "featured": true,
+      "deliverables": [
+        "Everything in Starter",
+        "Authenticated Flow Testing (login, sessions)",
+        "Business Logic Vulnerability Testing",
+        "File Upload & Input Validation Audit",
+        "API Surface Security Review",
+        "Interactive Dashboard (12 months)",
+        "1 Free Re-test After You Fix Issues",
+        "Priority Email Support During Engagement"
+      ],
+      "notIncluded": null,
+      "cta": "Get Started",
+      "ctaStyle": "primary"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "badge": "Full Audit",
+      "description": "For SaaS platforms, fintech, healthcare, or multi-system orgs",
+      "scope": "Unlimited checks — scoped to your full asset inventory",
+      "scopeTooltip": "Manual + automated testing across web, APIs, cloud infrastructure, internal network, and third-party integrations.",
+      "price": "Custom",
+      "priceNote": "starts at $2,500 · contact for scope",
+      "delivery": "Custom timeline · agreed at kickoff",
+      "featured": false,
+      "deliverables": [
+        "Everything in Business",
+        "Manual + AI-Automated Pentest",
+        "Cloud Infrastructure Review (AWS/GCP/Azure)",
+        "API Deep Audit & OAuth Flow Testing",
+        "Webhook & Third-Party Integration Security",
+        "ISO 27001 / SOC 2 Alignment Report",
+        "Executive Summary for Leadership",
+        "Premium Dashboard (lifetime access)",
+        "Dedicated Security Analyst",
+        "Remediation Consulting Until Fixed"
+      ],
+      "notIncluded": null,
+      "cta": "Contact Sales",
+      "ctaStyle": "outline"
+    }
+  ],
+  "addOnServices": [
+    {
+      "name": "Incident Forensics",
+      "price": "$75/hr",
+      "priceAlt": "or flat $799",
+      "description": "Post-breach investigation, root cause analysis, and evidence preservation for your legal and insurance teams."
+    },
+    {
+      "name": "Security Awareness Training",
+      "price": "$199/session",
+      "priceAlt": null,
+      "description": "Live \"Human Firewall\" workshop: phishing simulation, social engineering defense, and employee security culture."
+    },
+    {
+      "name": "Ongoing Monitoring Retainer",
+      "price": "$299/mo",
+      "priceAlt": null,
+      "description": "Monthly vulnerability scanning, alert triage, and a quarterly re-test to track your security posture over time."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How long does the audit take?",
+      "a": "Starter audits are delivered in 3–5 business days. Business audits take 7–10 business days. Enterprise timelines are agreed at the kickoff call based on scope. All deadlines are confirmed before we start."
+    },
+    {
+      "q": "What do you need from us to get started?",
+      "a": "A scoping call (30 min), the URL(s) to test, written authorization, and for Business/Enterprise, a test account with elevated permissions. We handle everything else."
+    },
+    {
+      "q": "What's a 'security check'?",
+      "a": "Each check targets a specific vulnerability category — for example, SQL injection on all input fields, or SSL misconfiguration across your domain. Starter covers your external perimeter. Business adds authenticated and logic-layer checks."
+    },
+    {
+      "q": "Can we get a custom quote for a large application?",
+      "a": "Absolutely. Enterprise pricing is scoped to your asset inventory — number of pages, API endpoints, user roles, and integrations. Contact us and we'll respond with a proposal within 24 hours."
+    },
+    {
+      "q": "Is the free scan on your homepage the same as a paid audit?",
+      "a": "No. The free scanner is an automated surface-level check — useful for a quick health snapshot. A paid audit is a manual and AI-assisted deep investigation by a human security analyst, with a signed report you can share with clients or regulators."
+    }
+  ]
+}
