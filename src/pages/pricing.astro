@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import pricingData from "../data/pricing.json";
 
-const { pentestPackages, addOnServices, faq } = pricingData;
+const { pentestPackages, comparisonTable, addOnServices, faq } = pricingData;
 ---
 
 <Layout
@@ -98,37 +98,6 @@ const { pentestPackages, addOnServices, faq } = pricingData;
                             ))}
                         </ul>
 
-                        <!-- 15 AI checks — Starter only -->
-                        {"checks" in pkg && pkg.checks && (
-                            <details class="mb-6 group">
-                                <summary class="flex items-center justify-between cursor-pointer list-none border border-emerald-500/30 bg-emerald-500/5 rounded-xl px-4 py-3 hover:bg-emerald-500/10 transition-all">
-                                    <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider">
-                                        {pkg.id === "business"
-                                            ? `View ${pkg.checks.length} additional checks (40 total)`
-                                            : pkg.id === "enterprise"
-                                            ? `View ${pkg.checks.length} additional checks (65 total)`
-                                            : `View all ${pkg.checks.length} AI security checks`}
-                                    </span>
-                                    <svg class="w-4 h-4 text-emerald-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </summary>
-                                <div class="mt-3 space-y-2">
-                                    {pkg.checks.map((check) => (
-                                        <div class="flex gap-3 bg-slate-800/40 rounded-lg px-3 py-2.5">
-                                            <span class="text-emerald-500 font-bold text-xs w-5 flex-shrink-0 mt-0.5">
-                                                {String(check.id).padStart(2, "0")}
-                                            </span>
-                                            <div>
-                                                <p class="text-white text-xs font-semibold">{check.name}</p>
-                                                <p class="text-slate-500 text-xs mt-0.5 leading-relaxed">{check.detail}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </details>
-                        )}
-
                         <!-- Not included note -->
                         {pkg.notIncluded && (
                             <p class="text-slate-500 text-xs mb-5 border-t border-slate-800 pt-4">
@@ -156,6 +125,128 @@ const { pentestPackages, addOnServices, faq } = pricingData;
                 All audits require a signed authorization form before work begins.
                 Prices are per-project, not per month. No recurring charges unless you opt into a monitoring retainer.
             </p>
+        </section>
+
+        <!-- Plan Comparison Table -->
+        <section class="container mx-auto px-6 py-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-3">Compare All Plans</h2>
+                <p class="text-slate-400 text-sm">Everything included in each audit — no hidden extras.</p>
+            </div>
+
+            <div class="max-w-5xl mx-auto overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <!-- Header -->
+                    <thead>
+                        <tr>
+                            <th class="text-left py-4 px-5 text-slate-500 text-sm font-normal w-2/5"></th>
+                            <th class="py-4 px-5 text-center">
+                                <div class="text-white font-bold">Starter</div>
+                                <div class="text-emerald-400 font-bold text-lg">$399</div>
+                            </th>
+                            <th class="py-4 px-5 text-center bg-emerald-500/5 border-x border-emerald-500/20 rounded-t-xl">
+                                <div class="text-emerald-400 text-xs font-bold uppercase tracking-wider mb-1">Most Popular</div>
+                                <div class="text-white font-bold">Business</div>
+                                <div class="text-emerald-400 font-bold text-lg">$799</div>
+                            </th>
+                            <th class="py-4 px-5 text-center">
+                                <div class="text-white font-bold">Enterprise</div>
+                                <div class="text-emerald-400 font-bold text-lg">Custom</div>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {comparisonTable.map((section) => (
+                            <>
+                                <!-- Category header row -->
+                                <tr>
+                                    <td colspan="4" class="pt-6 pb-2 px-5">
+                                        <span class="text-xs font-bold uppercase tracking-widest text-slate-500">
+                                            {section.category}
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <!-- Feature rows -->
+                                {section.rows.map((row, i) => (
+                                    <tr class={`border-t border-slate-800/60 ${i % 2 === 0 ? "" : "bg-slate-900/20"}`}>
+                                        <td class="py-3.5 px-5 text-slate-300 text-sm">{row.feature}</td>
+
+                                        <!-- Starter -->
+                                        <td class="py-3.5 px-5 text-center">
+                                            {row.starter === true ? (
+                                                <span class="inline-flex items-center justify-center">
+                                                    <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                                                        <circle cx="10" cy="10" r="10" />
+                                                        <path fill="#020617" d="M6 10l3 3 5-5" stroke="#020617" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                                    </svg>
+                                                </span>
+                                            ) : row.starter === false ? (
+                                                <span class="inline-block w-4 h-0.5 bg-slate-700 rounded mx-auto"></span>
+                                            ) : (
+                                                <span class="text-emerald-400 text-xs font-semibold">{row.starter}</span>
+                                            )}
+                                        </td>
+
+                                        <!-- Business -->
+                                        <td class="py-3.5 px-5 text-center bg-emerald-500/5 border-x border-emerald-500/20">
+                                            {row.business === true ? (
+                                                <span class="inline-flex items-center justify-center">
+                                                    <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                                                        <circle cx="10" cy="10" r="10" />
+                                                        <path fill="#020617" d="M6 10l3 3 5-5" stroke="#020617" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                                    </svg>
+                                                </span>
+                                            ) : row.business === false ? (
+                                                <span class="inline-block w-4 h-0.5 bg-slate-700 rounded mx-auto"></span>
+                                            ) : (
+                                                <span class="text-emerald-400 text-xs font-semibold">{row.business}</span>
+                                            )}
+                                        </td>
+
+                                        <!-- Enterprise -->
+                                        <td class="py-3.5 px-5 text-center">
+                                            {row.enterprise === true ? (
+                                                <span class="inline-flex items-center justify-center">
+                                                    <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                                                        <circle cx="10" cy="10" r="10" />
+                                                        <path fill="#020617" d="M6 10l3 3 5-5" stroke="#020617" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                                    </svg>
+                                                </span>
+                                            ) : row.enterprise === false ? (
+                                                <span class="inline-block w-4 h-0.5 bg-slate-700 rounded mx-auto"></span>
+                                            ) : (
+                                                <span class="text-emerald-400 text-xs font-semibold">{row.enterprise}</span>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </>
+                        ))}
+
+                        <!-- CTA row -->
+                        <tr class="border-t border-slate-800">
+                            <td class="py-6 px-5"></td>
+                            <td class="py-6 px-5 text-center">
+                                <a href="/contact" class="inline-block border border-emerald-500 text-emerald-400 px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-emerald-500/10 transition-all">
+                                    Get Started
+                                </a>
+                            </td>
+                            <td class="py-6 px-5 text-center bg-emerald-500/5 border-x border-b border-emerald-500/20 rounded-b-xl">
+                                <a href="/contact" class="inline-block bg-emerald-500 text-black px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-emerald-400 transition-all glow-primary">
+                                    Get Started
+                                </a>
+                            </td>
+                            <td class="py-6 px-5 text-center">
+                                <a href="/contact" class="inline-block border border-emerald-500 text-emerald-400 px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-emerald-500/10 transition-all">
+                                    Contact Sales
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <!-- Add-On Services — clearly separated from main audits -->

@@ -408,6 +408,54 @@
       "ctaStyle": "outline"
     }
   ],
+  "comparisonTable": [
+    {
+      "category": "Security Coverage",
+      "rows": [
+        { "feature": "AI Security Checks Included",        "starter": "15",        "business": "40",          "enterprise": "65" },
+        { "feature": "External Surface Scan",              "starter": true,         "business": true,           "enterprise": true },
+        { "feature": "Application Layer Testing",          "starter": false,        "business": true,           "enterprise": true },
+        { "feature": "Cloud Infrastructure Review",        "starter": false,        "business": false,          "enterprise": true },
+        { "feature": "Supply Chain & Dependencies Scan",   "starter": false,        "business": false,          "enterprise": true }
+      ]
+    },
+    {
+      "category": "Testing Method",
+      "rows": [
+        { "feature": "Automated AI Scanning",              "starter": true,         "business": true,           "enterprise": true },
+        { "feature": "Authenticated Session Testing",      "starter": false,        "business": true,           "enterprise": true },
+        { "feature": "Business Logic & Workflow Testing",  "starter": false,        "business": true,           "enterprise": true },
+        { "feature": "Manual Expert Review",               "starter": false,        "business": false,          "enterprise": true },
+        { "feature": "Red Team / Offensive Testing",       "starter": false,        "business": true,           "enterprise": true }
+      ]
+    },
+    {
+      "category": "Deliverables",
+      "rows": [
+        { "feature": "PDF Security Report",                "starter": true,         "business": true,           "enterprise": true },
+        { "feature": "Dashboard Access",                   "starter": "90 days",    "business": "12 months",    "enterprise": "Lifetime" },
+        { "feature": "Executive Summary for Leadership",   "starter": false,        "business": false,          "enterprise": true },
+        { "feature": "Re-test After Fixes",                "starter": false,        "business": "1 free",       "enterprise": true },
+        { "feature": "Remediation Consulting",             "starter": false,        "business": false,          "enterprise": true }
+      ]
+    },
+    {
+      "category": "Support",
+      "rows": [
+        { "feature": "Email Support During Engagement",    "starter": false,        "business": true,           "enterprise": true },
+        { "feature": "Priority Response",                  "starter": false,        "business": true,           "enterprise": true },
+        { "feature": "Dedicated Security Analyst",         "starter": false,        "business": false,          "enterprise": true }
+      ]
+    },
+    {
+      "category": "Compliance",
+      "rows": [
+        { "feature": "ISO 27001 / SOC 2 Alignment Report", "starter": false,       "business": false,          "enterprise": true },
+        { "feature": "GDPR / Data Privacy Audit",          "starter": false,       "business": false,          "enterprise": true },
+        { "feature": "Logging & Monitoring Audit",         "starter": false,       "business": false,          "enterprise": true }
+      ]
+    }
+  ],
   "addOnServices": [
     {
       "name": "Incident Forensics",
