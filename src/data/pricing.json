@@ -106,8 +106,8 @@
       "name": "Business",
       "badge": "Most Popular",
       "description": "For web apps with login, payments, or user data",
-      "scope": "30 – 40 security checks covering your full application layer",
-      "scopeTooltip": "Covers everything in Starter plus authenticated flows, business logic, API endpoints, and session management.",
+      "scope": "40 AI-powered security checks — 15 from Starter + 25 application-layer checks",
+      "scopeTooltip": "Our AI runs authenticated sessions inside your app, probing login flows, business logic, APIs, and session management — areas invisible to external scanners.",
       "price": "$799",
       "priceNote": "one-time · single project",
       "delivery": "7 – 10 business days",
@@ -121,6 +121,133 @@
         "Interactive Dashboard (12 months)",
         "1 Free Re-test After You Fix Issues",
         "Priority Email Support During Engagement"
+      ],
+      "checks": [
+        {
+          "id": 16,
+          "name": "Login Brute Force Protection Audit",
+          "detail": "AI tests rate limiting, account lockout thresholds, and CAPTCHA bypass to verify your login can't be hammered."
+        },
+        {
+          "id": 17,
+          "name": "Multi-Factor Authentication (MFA) Bypass",
+          "detail": "Tests OTP replay attacks, MFA fatigue techniques, and fallback mechanism weaknesses."
+        },
+        {
+          "id": 18,
+          "name": "Password Reset Flow Security",
+          "detail": "Checks reset token predictability, expiry windows, and whether tokens can be reused or leaked via Referer headers."
+        },
+        {
+          "id": 19,
+          "name": "Session Fixation Attack Testing",
+          "detail": "Verifies that session tokens are regenerated on login and never accepted from pre-authentication state."
+        },
+        {
+          "id": 20,
+          "name": "Session Token Entropy & Expiry Audit",
+          "detail": "AI analyzes token randomness, length, and whether idle sessions expire correctly on server side."
+        },
+        {
+          "id": 21,
+          "name": "Horizontal Privilege Escalation (IDOR)",
+          "detail": "AI systematically manipulates object references to test if User A can access or modify User B's data."
+        },
+        {
+          "id": 22,
+          "name": "Vertical Privilege Escalation",
+          "detail": "Tests whether a standard user can elevate to admin or moderator roles by manipulating requests or tokens."
+        },
+        {
+          "id": 23,
+          "name": "Price & Quantity Manipulation",
+          "detail": "For e-commerce: AI intercepts and modifies checkout requests to test if prices, quantities, or discounts can be tampered client-side."
+        },
+        {
+          "id": 24,
+          "name": "Race Condition Detection",
+          "detail": "Sends concurrent requests to exploit time-of-check to time-of-use (TOCTOU) flaws — common in payments and coupon systems."
+        },
+        {
+          "id": 25,
+          "name": "Multi-Step Workflow Bypass",
+          "detail": "Tests whether steps in checkout, onboarding, or approval flows can be skipped by jumping directly to later endpoints."
+        },
+        {
+          "id": 26,
+          "name": "Malicious File Upload Testing",
+          "detail": "AI attempts to upload executable files (.php, .exe, .svg with XSS) and tests MIME type validation bypass."
+        },
+        {
+          "id": 27,
+          "name": "Path Traversal via File Upload",
+          "detail": "Tests whether uploaded filenames can escape the intended directory using ../ sequences."
+        },
+        {
+          "id": 28,
+          "name": "XML External Entity (XXE) Injection",
+          "detail": "Checks all XML-processing endpoints for XXE vulnerabilities that can expose server files or trigger SSRF."
+        },
+        {
+          "id": 29,
+          "name": "Server-Side Request Forgery (SSRF)",
+          "detail": "AI probes URL input fields and webhooks to test if the server can be tricked into fetching internal resources."
+        },
+        {
+          "id": 30,
+          "name": "Command Injection Testing",
+          "detail": "Tests inputs that interact with OS commands (file conversions, ping tools, etc.) for shell injection vulnerabilities."
+        },
+        {
+          "id": 31,
+          "name": "API Authentication & Authorization Audit",
+          "detail": "Verifies that every API endpoint enforces proper auth — including endpoints not linked in the UI."
+        },
+        {
+          "id": 32,
+          "name": "API Rate Limiting & Throttling Check",
+          "detail": "Tests whether APIs can be abused via mass enumeration, scraping, or credential stuffing without triggering limits."
+        },
+        {
+          "id": 33,
+          "name": "JWT Token Security Audit",
+          "detail": "Checks for algorithm confusion attacks (RS256→HS256), weak secrets, missing expiry, and unsigned token acceptance."
+        },
+        {
+          "id": 34,
+          "name": "OAuth Flow Security Review",
+          "detail": "Tests redirect URI manipulation, state parameter absence (CSRF on OAuth), and token leakage in authorization flows."
+        },
+        {
+          "id": 35,
+          "name": "GraphQL Security Testing",
+          "detail": "If GraphQL is present: tests introspection exposure, batching attacks, and deeply nested query DoS."
+        },
+        {
+          "id": 36,
+          "name": "Cross-Site Request Forgery (CSRF)",
+          "detail": "Verifies CSRF token implementation on all state-changing requests — especially account settings and payments."
+        },
+        {
+          "id": 37,
+          "name": "Token Leakage in URLs & Logs",
+          "detail": "Checks if session tokens, API keys, or JWTs are exposed in URLs, browser history, server logs, or Referer headers."
+        },
+        {
+          "id": 38,
+          "name": "Concurrent Session Management",
+          "detail": "Tests whether multiple simultaneous sessions are allowed and if existing sessions are invalidated on password change."
+        },
+        {
+          "id": 39,
+          "name": "Logout & Session Invalidation",
+          "detail": "Verifies that server-side session is fully invalidated on logout — not just cleared client-side."
+        },
+        {
+          "id": 40,
+          "name": "Sensitive Data Exposure in API Responses",
+          "detail": "AI inspects API responses for over-exposed fields: passwords, internal IDs, PII, or data that shouldn't reach the client."
+        }
       ],
       "notIncluded": null,
       "cta": "Get Started",
