@@ -105,6 +105,8 @@ const { pentestPackages, addOnServices, faq } = pricingData;
                                     <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider">
                                         {pkg.id === "business"
                                             ? `View ${pkg.checks.length} additional checks (40 total)`
+                                            : pkg.id === "enterprise"
+                                            ? `View ${pkg.checks.length} additional checks (65 total)`
                                             : `View all ${pkg.checks.length} AI security checks`}
                                     </span>
                                     <svg class="w-4 h-4 text-emerald-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -258,8 +258,8 @@
       "name": "Enterprise",
       "badge": "Full Audit",
       "description": "For SaaS platforms, fintech, healthcare, or multi-system orgs",
-      "scope": "Unlimited checks — scoped to your full asset inventory",
-      "scopeTooltip": "Manual + automated testing across web, APIs, cloud infrastructure, internal network, and third-party integrations.",
+      "scope": "65 AI-powered checks — 40 from Business + 25 infrastructure & compliance checks",
+      "scopeTooltip": "Adds cloud infrastructure, network segmentation, supply chain, IaC, compliance controls, and cryptography review on top of the full Business audit.",
       "price": "Custom",
       "priceNote": "starts at $2,500 · contact for scope",
       "delivery": "Custom timeline · agreed at kickoff",
@@ -275,6 +275,133 @@
         "Premium Dashboard (lifetime access)",
         "Dedicated Security Analyst",
         "Remediation Consulting Until Fixed"
+      ],
+      "checks": [
+        {
+          "id": 41,
+          "name": "IAM Permissions Audit (AWS/GCP/Azure)",
+          "detail": "AI maps all cloud IAM roles and policies to detect over-permissioned accounts, unused roles, and privilege escalation paths."
+        },
+        {
+          "id": 42,
+          "name": "Cloud Storage Bucket Exposure",
+          "detail": "Scans S3, GCS, and Azure Blob containers for public read/write access and sensitive file exposure."
+        },
+        {
+          "id": 43,
+          "name": "Cloud Security Group & Firewall Rules Review",
+          "detail": "Analyzes inbound/outbound rules to detect ports and services exposed to 0.0.0.0/0 that should be restricted."
+        },
+        {
+          "id": 44,
+          "name": "Secrets in Cloud Environment Variables",
+          "detail": "Checks cloud function configs, container env vars, and CI/CD pipelines for hardcoded API keys, passwords, or tokens."
+        },
+        {
+          "id": 45,
+          "name": "Container & Docker Image Security Scan",
+          "detail": "AI audits Docker images and Kubernetes configs for known CVEs, root containers, and excessive capabilities."
+        },
+        {
+          "id": 46,
+          "name": "Infrastructure-as-Code (IaC) Security Review",
+          "detail": "Scans Terraform, CloudFormation, and Helm charts for misconfigurations before they reach production."
+        },
+        {
+          "id": 47,
+          "name": "Internal Network Segmentation Review",
+          "detail": "Tests whether a compromised service can reach internal databases, admin panels, or other services it shouldn't."
+        },
+        {
+          "id": 48,
+          "name": "VPN & Remote Access Security Audit",
+          "detail": "Reviews VPN configuration, split tunneling risks, and remote access policies for unauthorized entry points."
+        },
+        {
+          "id": 49,
+          "name": "DNS Rebinding Attack Testing",
+          "detail": "Tests whether internal services can be reached from an external browser by abusing DNS TTL manipulation."
+        },
+        {
+          "id": 50,
+          "name": "Microservices Inter-Service Authentication",
+          "detail": "Verifies that internal service-to-service calls require authentication — not just assumed-trusted within the network."
+        },
+        {
+          "id": 51,
+          "name": "API Versioning & Deprecated Endpoint Exposure",
+          "detail": "Enumerates all API versions (v1, v2, legacy) and tests whether deprecated endpoints still expose sensitive functionality."
+        },
+        {
+          "id": 52,
+          "name": "Mass Assignment Vulnerability Testing",
+          "detail": "AI injects extra fields into API requests to test whether the server binds and saves properties it shouldn't — like 'role: admin'."
+        },
+        {
+          "id": 53,
+          "name": "API Key Lifecycle & Rotation Audit",
+          "detail": "Reviews whether API keys expire, can be rotated, are scoped properly, and whether revoked keys are truly invalidated."
+        },
+        {
+          "id": 54,
+          "name": "WebSocket Security Testing",
+          "detail": "Tests WebSocket endpoints for missing authentication, message injection, and cross-site WebSocket hijacking."
+        },
+        {
+          "id": 55,
+          "name": "Webhook Security & SSRF via Webhooks",
+          "detail": "AI registers malicious webhook URLs to test if your server fetches internal endpoints when processing webhook events."
+        },
+        {
+          "id": 56,
+          "name": "Payment Gateway Integration Security",
+          "detail": "Reviews Stripe, PayPal, or custom payment flows for amount tampering, webhook signature bypass, and replay attacks."
+        },
+        {
+          "id": 57,
+          "name": "Supply Chain Dependency Vulnerability Scan",
+          "detail": "Scans all npm/pip/composer packages for known CVEs and flags dependencies with maintainer abandonment risk."
+        },
+        {
+          "id": 58,
+          "name": "Third-Party API Key Exposure in Frontend",
+          "detail": "Scans compiled JS bundles and frontend source for hardcoded API keys, secrets, or credentials left in client-side code."
+        },
+        {
+          "id": 59,
+          "name": "Cryptography Implementation Review",
+          "detail": "Audits hashing algorithms (bcrypt vs MD5), encryption key lengths, IV reuse, and custom crypto implementations."
+        },
+        {
+          "id": 60,
+          "name": "Secure File Storage & Access Control Audit",
+          "detail": "Tests whether uploaded or generated files are stored securely, require authentication to access, and can't be enumerated."
+        },
+        {
+          "id": 61,
+          "name": "GDPR / Data Privacy Compliance Check",
+          "detail": "Maps PII data flows and checks for consent mechanisms, right-to-delete implementation, and data minimization practices."
+        },
+        {
+          "id": 62,
+          "name": "ISO 27001 / SOC 2 Control Gap Analysis",
+          "detail": "AI cross-references findings against ISO 27001 Annex A and SOC 2 Trust Criteria to identify compliance gaps for auditors."
+        },
+        {
+          "id": 63,
+          "name": "Logging & Monitoring Coverage Audit",
+          "detail": "Verifies that security-relevant events (failed logins, privilege changes, data exports) are logged and alerts are configured."
+        },
+        {
+          "id": 64,
+          "name": "Backup & Disaster Recovery Security Review",
+          "detail": "Tests whether backups are encrypted, access-controlled, and whether restore procedures can be exploited."
+        },
+        {
+          "id": 65,
+          "name": "Social Engineering Attack Surface Mapping",
+          "detail": "Identifies publicly exposed employee data, org chart info, and domain intel that could be used in targeted phishing campaigns."
+        }
       ],
       "notIncluded": null,
       "cta": "Contact Sales",
