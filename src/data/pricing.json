@@ -410,49 +410,95 @@
   ],
   "comparisonTable": [
     {
-      "category": "Security Coverage",
+      "category": "External Surface — Starter, Business & Enterprise",
       "rows": [
-        { "feature": "AI Security Checks Included",        "starter": "15",        "business": "40",          "enterprise": "65" },
-        { "feature": "External Surface Scan",              "starter": true,         "business": true,           "enterprise": true },
-        { "feature": "Application Layer Testing",          "starter": false,        "business": true,           "enterprise": true },
-        { "feature": "Cloud Infrastructure Review",        "starter": false,        "business": false,          "enterprise": true },
-        { "feature": "Supply Chain & Dependencies Scan",   "starter": false,        "business": false,          "enterprise": true }
+        { "feature": "SSL/TLS Certificate Audit",                    "starter": true, "business": true, "enterprise": true },
+        { "feature": "HTTP Security Headers Scan",                   "starter": true, "business": true, "enterprise": true },
+        { "feature": "Content Security Policy (CSP) Analysis",       "starter": true, "business": true, "enterprise": true },
+        { "feature": "SQL Injection Detection",                      "starter": true, "business": true, "enterprise": true },
+        { "feature": "Cross-Site Scripting (XSS) Detection",         "starter": true, "business": true, "enterprise": true },
+        { "feature": "Exposed Sensitive Files Check",                "starter": true, "business": true, "enterprise": true },
+        { "feature": "Directory & Path Enumeration",                 "starter": true, "business": true, "enterprise": true },
+        { "feature": "Subdomain Takeover Risk",                      "starter": true, "business": true, "enterprise": true },
+        { "feature": "DNS Security Review (SPF, DMARC, DKIM)",       "starter": true, "business": true, "enterprise": true },
+        { "feature": "Open Ports & Services Fingerprinting",         "starter": true, "business": true, "enterprise": true },
+        { "feature": "Cookie Security Flags Audit",                  "starter": true, "business": true, "enterprise": true },
+        { "feature": "CORS Policy Review",                           "starter": true, "business": true, "enterprise": true },
+        { "feature": "Information Disclosure Detection",             "starter": true, "business": true, "enterprise": true },
+        { "feature": "Third-Party Script Risk Assessment",           "starter": true, "business": true, "enterprise": true },
+        { "feature": "Clickjacking Vulnerability Check",             "starter": true, "business": true, "enterprise": true }
       ]
     },
     {
-      "category": "Testing Method",
+      "category": "Application Layer — Business & Enterprise",
       "rows": [
-        { "feature": "Automated AI Scanning",              "starter": true,         "business": true,           "enterprise": true },
-        { "feature": "Authenticated Session Testing",      "starter": false,        "business": true,           "enterprise": true },
-        { "feature": "Business Logic & Workflow Testing",  "starter": false,        "business": true,           "enterprise": true },
-        { "feature": "Manual Expert Review",               "starter": false,        "business": false,          "enterprise": true },
-        { "feature": "Red Team / Offensive Testing",       "starter": false,        "business": true,           "enterprise": true }
+        { "feature": "Login Brute Force Protection Audit",           "starter": false, "business": true, "enterprise": true },
+        { "feature": "Multi-Factor Authentication (MFA) Bypass",     "starter": false, "business": true, "enterprise": true },
+        { "feature": "Password Reset Flow Security",                 "starter": false, "business": true, "enterprise": true },
+        { "feature": "Session Fixation Attack Testing",              "starter": false, "business": true, "enterprise": true },
+        { "feature": "Session Token Entropy & Expiry Audit",         "starter": false, "business": true, "enterprise": true },
+        { "feature": "Horizontal Privilege Escalation (IDOR)",       "starter": false, "business": true, "enterprise": true },
+        { "feature": "Vertical Privilege Escalation",                "starter": false, "business": true, "enterprise": true },
+        { "feature": "Price & Quantity Manipulation",                "starter": false, "business": true, "enterprise": true },
+        { "feature": "Race Condition Detection",                     "starter": false, "business": true, "enterprise": true },
+        { "feature": "Multi-Step Workflow Bypass",                   "starter": false, "business": true, "enterprise": true },
+        { "feature": "Malicious File Upload Testing",                "starter": false, "business": true, "enterprise": true },
+        { "feature": "Path Traversal via File Upload",               "starter": false, "business": true, "enterprise": true },
+        { "feature": "XML External Entity (XXE) Injection",          "starter": false, "business": true, "enterprise": true },
+        { "feature": "Server-Side Request Forgery (SSRF)",           "starter": false, "business": true, "enterprise": true },
+        { "feature": "Command Injection Testing",                    "starter": false, "business": true, "enterprise": true },
+        { "feature": "API Authentication & Authorization Audit",     "starter": false, "business": true, "enterprise": true },
+        { "feature": "API Rate Limiting & Throttling Check",         "starter": false, "business": true, "enterprise": true },
+        { "feature": "JWT Token Security Audit",                     "starter": false, "business": true, "enterprise": true },
+        { "feature": "OAuth Flow Security Review",                   "starter": false, "business": true, "enterprise": true },
+        { "feature": "GraphQL Security Testing",                     "starter": false, "business": true, "enterprise": true },
+        { "feature": "Cross-Site Request Forgery (CSRF)",            "starter": false, "business": true, "enterprise": true },
+        { "feature": "Token Leakage in URLs & Logs",                 "starter": false, "business": true, "enterprise": true },
+        { "feature": "Concurrent Session Management",                "starter": false, "business": true, "enterprise": true },
+        { "feature": "Logout & Session Invalidation",                "starter": false, "business": true, "enterprise": true },
+        { "feature": "Sensitive Data Exposure in API Responses",     "starter": false, "business": true, "enterprise": true }
       ]
     },
     {
-      "category": "Deliverables",
+      "category": "Infrastructure & Compliance — Enterprise Only",
       "rows": [
-        { "feature": "PDF Security Report",                "starter": true,         "business": true,           "enterprise": true },
-        { "feature": "Dashboard Access",                   "starter": "90 days",    "business": "12 months",    "enterprise": "Lifetime" },
-        { "feature": "Executive Summary for Leadership",   "starter": false,        "business": false,          "enterprise": true },
-        { "feature": "Re-test After Fixes",                "starter": false,        "business": "1 free",       "enterprise": true },
-        { "feature": "Remediation Consulting",             "starter": false,        "business": false,          "enterprise": true }
+        { "feature": "IAM Permissions Audit (AWS/GCP/Azure)",        "starter": false, "business": false, "enterprise": true },
+        { "feature": "Cloud Storage Bucket Exposure",                "starter": false, "business": false, "enterprise": true },
+        { "feature": "Cloud Security Group & Firewall Rules",        "starter": false, "business": false, "enterprise": true },
+        { "feature": "Secrets in Cloud Environment Variables",       "starter": false, "business": false, "enterprise": true },
+        { "feature": "Container & Docker Image Security Scan",       "starter": false, "business": false, "enterprise": true },
+        { "feature": "Infrastructure-as-Code (IaC) Security Review", "starter": false, "business": false, "enterprise": true },
+        { "feature": "Internal Network Segmentation Review",         "starter": false, "business": false, "enterprise": true },
+        { "feature": "VPN & Remote Access Security Audit",           "starter": false, "business": false, "enterprise": true },
+        { "feature": "DNS Rebinding Attack Testing",                 "starter": false, "business": false, "enterprise": true },
+        { "feature": "Microservices Inter-Service Authentication",   "starter": false, "business": false, "enterprise": true },
+        { "feature": "API Versioning & Deprecated Endpoint Exposure","starter": false, "business": false, "enterprise": true },
+        { "feature": "Mass Assignment Vulnerability Testing",        "starter": false, "business": false, "enterprise": true },
+        { "feature": "API Key Lifecycle & Rotation Audit",           "starter": false, "business": false, "enterprise": true },
+        { "feature": "WebSocket Security Testing",                   "starter": false, "business": false, "enterprise": true },
+        { "feature": "Webhook Security & SSRF via Webhooks",         "starter": false, "business": false, "enterprise": true },
+        { "feature": "Payment Gateway Integration Security",         "starter": false, "business": false, "enterprise": true },
+        { "feature": "Supply Chain Dependency Vulnerability Scan",   "starter": false, "business": false, "enterprise": true },
+        { "feature": "Third-Party API Key Exposure in Frontend",     "starter": false, "business": false, "enterprise": true },
+        { "feature": "Cryptography Implementation Review",           "starter": false, "business": false, "enterprise": true },
+        { "feature": "Secure File Storage & Access Control Audit",   "starter": false, "business": false, "enterprise": true },
+        { "feature": "GDPR / Data Privacy Compliance Check",         "starter": false, "business": false, "enterprise": true },
+        { "feature": "ISO 27001 / SOC 2 Control Gap Analysis",       "starter": false, "business": false, "enterprise": true },
+        { "feature": "Logging & Monitoring Coverage Audit",          "starter": false, "business": false, "enterprise": true },
+        { "feature": "Backup & Disaster Recovery Security Review",   "starter": false, "business": false, "enterprise": true },
+        { "feature": "Social Engineering Attack Surface Mapping",    "starter": false, "business": false, "enterprise": true }
       ]
     },
     {
-      "category": "Support",
+      "category": "Deliverables & Support",
       "rows": [
-        { "feature": "Email Support During Engagement",    "starter": false,        "business": true,           "enterprise": true },
-        { "feature": "Priority Response",                  "starter": false,        "business": true,           "enterprise": true },
-        { "feature": "Dedicated Security Analyst",         "starter": false,        "business": false,          "enterprise": true }
-      ]
-    },
-    {
-      "category": "Compliance",
-      "rows": [
-        { "feature": "ISO 27001 / SOC 2 Alignment Report", "starter": false,       "business": false,          "enterprise": true },
-        { "feature": "GDPR / Data Privacy Audit",          "starter": false,       "business": false,          "enterprise": true },
-        { "feature": "Logging & Monitoring Audit",         "starter": false,       "business": false,          "enterprise": true }
+        { "feature": "PDF Security Report",                          "starter": true,       "business": true,        "enterprise": true },
+        { "feature": "Dashboard Access",                             "starter": "90 days",  "business": "12 months", "enterprise": "Lifetime" },
+        { "feature": "Re-test After Fixes",                          "starter": false,      "business": "1 free",    "enterprise": true },
+        { "feature": "Executive Summary for Leadership",             "starter": false,      "business": false,       "enterprise": true },
+        { "feature": "Remediation Consulting",                       "starter": false,      "business": false,       "enterprise": true },
+        { "feature": "Email Support During Engagement",              "starter": false,      "business": true,        "enterprise": true },
+        { "feature": "Dedicated Security Analyst",                   "starter": false,      "business": false,       "enterprise": true }
       ]
     }
   ],
