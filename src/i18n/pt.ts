@@ -1,9 +1,8 @@
-import type { Translations } from './es';
-
-export const pt: Translations = {
+export const pt = {
     nav: {
         home: "Início",
         services: "Serviços",
+        products: "Produtos",
         pricing: "Preços",
         about: "Sobre",
         intelligence: "Inteligência",
@@ -67,6 +66,43 @@ export const pt: Translations = {
             grade: "Nota de Segurança",
             issues: "Problemas Encontrados",
             recommendations: "Recomendações"
+        }
+    },
+    merch: {
+        title: "AuraLink",
+        titleGradient: "Merch",
+        description: "Leve a segurança com você. Produtos exclusivos projetados para a comunidade cyber.",
+        products: {
+            cap: {
+                name: "Boné Tático",
+                description: "Boné preto com logo bordado em verde esmeralda. Estilo tático, ajuste universal.",
+                price: "$35"
+            },
+            tshirt: {
+                name: "Camiseta Zero Day",
+                description: "Algodão premium preto. Estampa 'Zero Day' no peito, logo AuraLink nas costas.",
+                price: "$45"
+            },
+            hoodie: {
+                name: "Moletom Encrypted",
+                description: "Moletom preto com design de código criptografado. Bolso canguru, interior macio.",
+                price: "$75"
+            },
+            keychain: {
+                name: "Chaveiro Hex",
+                description: "Chaveiro metálico em formato de chip hexagonal. Acabamento preto fosco com logo gravado.",
+                price: "$15"
+            },
+            sticker: {
+                name: "Pacote de Adesivos",
+                description: "Pacote com 5 adesivos resistentes à água. Logos, ícones e frases de cyber-security.",
+                price: "$10"
+            },
+            mug: {
+                name: "Caneca Terminal",
+                description: "Caneca de cerâmica preta fosca. Design de terminal de comandos em verde fósforo.",
+                price: "$25"
+            }
         }
     },
     footer: {

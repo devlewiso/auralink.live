@@ -20,6 +20,7 @@ const { currentPath = "/" } = Astro.props;
     <!-- Desktop menu -->
     <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
         <a href="/services" class:list={["hover:text-emerald-400 transition-colors", currentPath === "/services" && "text-emerald-400"]}>Services</a>
+        <a href="/products" class:list={["hover:text-emerald-400 transition-colors", currentPath === "/products" && "text-emerald-400"]}>Products</a>
         <a href="/pricing"  class:list={["hover:text-emerald-400 transition-colors", currentPath === "/pricing"  && "text-emerald-400"]}>Pricing</a>
         <a href="/about"    class:list={["hover:text-emerald-400 transition-colors", currentPath === "/about"    && "text-emerald-400"]}>About</a>
         <a href="/blog"     class:list={["hover:text-emerald-400 transition-colors", currentPath === "/blog"     && "text-emerald-400"]}>Intelligence</a>
@@ -50,6 +51,7 @@ const { currentPath = "/" } = Astro.props;
 <div id="mobile-menu" class="hidden md:hidden absolute top-0 left-0 right-0 z-40 bg-[#020617]/95 backdrop-blur-md border-b border-slate-800 pt-24 pb-8 px-6">
     <div class="flex flex-col space-y-6 text-base font-medium">
         <a href="/services"    class:list={["transition-colors hover:text-emerald-400", currentPath === "/services"    ? "text-emerald-400" : "text-slate-300"]}>Services</a>
+        <a href="/products"    class:list={["transition-colors hover:text-emerald-400", currentPath === "/products"    ? "text-emerald-400" : "text-slate-300"]}>Products</a>
         <a href="/pricing"     class:list={["transition-colors hover:text-emerald-400", currentPath === "/pricing"     ? "text-emerald-400" : "text-slate-300"]}>Pricing</a>
         <a href="/about"       class:list={["transition-colors hover:text-emerald-400", currentPath === "/about"       ? "text-emerald-400" : "text-slate-300"]}>About</a>
         <a href="/blog"        class:list={["transition-colors hover:text-emerald-400", currentPath === "/blog"        ? "text-emerald-400" : "text-slate-300"]}>Intelligence</a>

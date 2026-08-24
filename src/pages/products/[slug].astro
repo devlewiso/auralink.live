@@ -1,0 +1,210 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+    const products = [
+        {
+            id: "tactical-cap",
+            name: "Tactical Cap",
+            price: 35,
+            image: "/merch/tactical-cap.jpg",
+            description: "Black cap with embroidered logo in emerald green. Tactical style, universal fit.",
+            longDescription: "Show your allegiance to the cyber security cause with our Tactical Cap. Featuring a precision-embroidered AuraLink logo in signature emerald green, this cap combines style with functionality. The adjustable strap ensures a perfect fit for any head size, while the premium cotton blend provides all-day comfort. Whether you're at a security conference, late-night coding session, or just running errands, this cap signals that you take security seriously.",
+            features: ["Premium cotton blend", "Adjustable strap", "Embroidered logo", "UV protection", "Breathable panels", "Curved brim"],
+            specs: { material: "80% Cotton, 20% Polyester", sizes: "One Size Fits All", care: "Hand wash cold" }
+        },
+        {
+            id: "zero-day-tshirt",
+            name: "Zero Day T-Shirt",
+            price: 45,
+            image: "/merch/zero-day-tshirt.jpg",
+            description: "Premium black cotton. 'Zero Day' design on chest, AuraLink logo on back.",
+            longDescription: "The Zero Day T-Shirt is more than apparel—it's a statement. Made from 100% organic cotton, this premium tee features a subtle 'Zero Day' graphic on the chest and the AuraLink logo on the back. The pre-shrunk fabric maintains its shape wash after wash, and the unisex fit flatters every body type. Perfect for the security professional who appreciates quality and subtlety.",
+            features: ["100% organic cotton", "Screen printed design", "Pre-shrunk fabric", "Unisex fit", "Reinforced seams", "Tagless label"],
+            specs: { material: "100% Organic Cotton", sizes: "S, M, L, XL, XXL", care: "Machine wash cold, tumble dry low" }
+        },
+        {
+            id: "encrypted-hoodie",
+            name: "Encrypted Hoodie",
+            price: 75,
+            image: "/merch/encrypted-hoodie.jpg",
+            description: "Black hoodie with encrypted code design. Kangaroo pocket, soft interior.",
+            longDescription: "Wrap yourself in layers of security with the Encrypted Hoodie. This heavyweight fleece features an all-over print of encrypted code—because even your hoodie should be secure. The soft brushed interior provides warmth without bulk, while the kangaroo pocket offers ample storage for your essentials. The drawstring hood adjusts to your preference, and the ribbed cuffs and hem lock in warmth.",
+            features: ["Heavyweight fleece (400gsm)", "Encrypted code print", "Kangaroo pocket", "Drawstring hood", "Ribbed cuffs and hem", "Soft brushed interior"],
+            specs: { material: "80% Cotton, 20% Polyester", sizes: "S, M, L, XL, XXL", care: "Machine wash cold, inside out" }
+        },
+        {
+            id: "hex-keychain",
+            name: "Hex Keychain",
+            price: 15,
+            image: "/merch/hex-keychain.jpg",
+            description: "Metal keychain in hexagonal chip shape. Matte black finish with engraved logo.",
+            longDescription: "The Hex Keychain is a daily reminder of your commitment to security. Machined from aircraft-grade aluminum and finished in matte black, this hexagonal keychain features a precision laser-engraved AuraLink logo. The anodized coating resists scratches and wear, ensuring your keychain looks sharp even after years of daily use. Includes a sturdy split ring that holds multiple keys without bending.",
+            features: ["Aircraft-grade aluminum", "Matte black coating", "Laser engraved", "Split ring included", "Anodized finish", "Lightweight (15g)"],
+            specs: { material: "6061 Aluminum Alloy", dimensions: "30mm x 26mm x 3mm", care: "Wipe clean with soft cloth" }
+        },
+        {
+            id: "sticker-pack",
+            name: "Sticker Pack",
+            price: 10,
+            image: "/merch/sticker-pack.jpg",
+            description: "Pack of 5 water-resistant stickers. Logos, icons and cyber-security phrases.",
+            longDescription: "Deck out your laptop, water bottle, or security gear with the AuraLink Sticker Pack. This collection of 5 unique designs includes our iconic logo, security-themed icons, and memorable phrases that every security professional appreciates. Printed on premium waterproof vinyl with UV-resistant inks, these stickers withstand sun, rain, and daily wear. Each sticker is 3 inches, perfect for laptops and gear.",
+            features: ["Waterproof vinyl", "UV resistant", "5 unique designs", "3 inch size", "Removable adhesive", "Scratch resistant"],
+            specs: { material: "Premium Vinyl", quantity: "5 stickers", care: "Apply to clean, dry surfaces" }
+        },
+        {
+            id: "terminal-mug",
+            name: "Terminal Mug",
+            price: 25,
+            image: "/merch/terminal-mug.jpg",
+            description: "Matte black ceramic mug. Command terminal design in phosphor green.",
+            longDescription: "Start your day with a command prompt. The Terminal Mug features a classic green-on-black terminal design that wraps around a premium 15oz ceramic mug. The matte black exterior provides a sophisticated look, while the glossy interior is easy to clean. Dishwasher and microwave safe, this mug is built for daily use. Because every security professional needs their coffee before they can debug anything.",
+            features: ["15oz capacity", "Dishwasher safe", "Matte finish", "Command prompt design", "Microwave safe", "Comfortable handle"],
+            specs: { material: "Ceramic", capacity: "15 oz (440ml)", care: "Dishwasher safe, top rack recommended" }
+        }
+    ];
+
+    return products.map((product) => ({
+        params: { slug: product.id },
+        props: { product }
+    }));
+}
+
+const { product } = Astro.props;
+---
+
+<Layout
+    title={`${product.name} | AuraLink Merch`}
+    description={product.description}
+>
+    <main class="min-h-screen bg-[#020617]">
+        <!-- Navigation -->
+        <Header currentPath="/products" />
+
+        <!-- Product Detail -->
+        <section class="container mx-auto px-6 py-20">
+            <div class="max-w-6xl mx-auto">
+                <!-- Breadcrumb -->
+                <nav class="mb-8">
+                    <a href="/products" class="text-slate-400 hover:text-emerald-400 transition-colors text-sm">
+                        ← Back to Products
+                    </a>
+                </nav>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Product Image -->
+                    <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden">
+                        <img
+                            src={product.image}
+                            alt={product.name}
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="flex flex-col justify-center">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4">{product.name}</h1>
+                        <p class="text-emerald-400 text-3xl font-bold mb-6">${product.price}</p>
+                        <p class="text-slate-300 text-lg mb-8">{product.longDescription}</p>
+
+                        <!-- Features -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-bold mb-4 text-slate-200">Features</h3>
+                            <ul class="space-y-2">
+                                {product.features.map((feature) => (
+                                    <li class="flex items-center text-slate-400">
+                                        <span class="text-emerald-400 mr-3">✓</span>
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <!-- Specs -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-bold mb-4 text-slate-200">Specifications</h3>
+                            <div class="bg-slate-900/50 rounded-xl p-4 border border-slate-800">
+                                {Object.entries(product.specs).map(([key, value]) => (
+                                    <div class="flex justify-between py-2 border-b border-slate-800 last:border-0">
+                                        <span class="text-slate-400 capitalize">{key}</span>
+                                        <span class="text-slate-200">{value}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <div class="flex gap-4">
+                            <a
+                                href="/contact"
+                                class="flex-1 bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-xl font-bold text-lg transition-all glow-primary text-center"
+                            >
+                                Order Now
+                            </a>
+                            <a
+                                href="/products"
+                                class="px-8 py-4 rounded-xl font-bold text-lg border border-slate-700 hover:border-emerald-500/50 text-slate-300 hover:text-emerald-400 transition-all"
+                            >
+                                Browse More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Products -->
+        <section class="container mx-auto px-6 py-16">
+            <h2 class="text-2xl font-bold mb-8 text-center">You Might Also Like</h2>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Placeholder for related products -->
+                <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition-all group">
+                    <div class="aspect-square bg-slate-800/50 overflow-hidden">
+                        <img
+                            src="/merch/sticker-pack.jpg"
+                            alt="Related Product"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Sticker Pack</h3>
+                        <p class="text-emerald-400 font-bold text-lg">$10</p>
+                    </div>
+                </div>
+                <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition-all group">
+                    <div class="aspect-square bg-slate-800/50 overflow-hidden">
+                        <img
+                            src="/merch/hex-keychain.jpg"
+                            alt="Related Product"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Hex Keychain</h3>
+                        <p class="text-emerald-400 font-bold text-lg">$15</p>
+                    </div>
+                </div>
+                <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition-all group">
+                    <div class="aspect-square bg-slate-800/50 overflow-hidden">
+                        <img
+                            src="/merch/terminal-mug.jpg"
+                            alt="Related Product"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Terminal Mug</h3>
+                        <p class="text-emerald-400 font-bold text-lg">$25</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>

@@ -1,9 +1,8 @@
-import type { Translations } from './es';
-
-export const en: Translations = {
+export const en = {
     nav: {
         home: "Home",
         services: "Services",
+        products: "Products",
         pricing: "Pricing",
         about: "About",
         intelligence: "Intelligence",
@@ -69,7 +68,46 @@ export const en: Translations = {
             recommendations: "Recommendations"
         }
     },
+    merch: {
+        title: "AuraLink",
+        titleGradient: "Merch",
+        description: "Carry security with you. Exclusive products designed for the cyber community.",
+        products: {
+            cap: {
+                name: "Tactical Cap",
+                description: "Black cap with embroidered logo in emerald green. Tactical style, universal fit.",
+                price: "$35"
+            },
+            tshirt: {
+                name: "Zero Day T-Shirt",
+                description: "Premium black cotton. 'Zero Day' design on chest, AuraLink logo on back.",
+                price: "$45"
+            },
+            hoodie: {
+                name: "Encrypted Hoodie",
+                description: "Black hoodie with encrypted code design. Kangaroo pocket, soft interior.",
+                price: "$75"
+            },
+            keychain: {
+                name: "Hex Keychain",
+                description: "Metal keychain in hexagonal chip shape. Matte black finish with engraved logo.",
+                price: "$15"
+            },
+            sticker: {
+                name: "Sticker Pack",
+                description: "Pack of 5 water-resistant stickers. Logos, icons and cyber-security phrases.",
+                price: "$10"
+            },
+            mug: {
+                name: "Terminal Mug",
+                description: "Matte black ceramic mug. Command terminal design in phosphor green.",
+                price: "$25"
+            }
+        }
+    },
     footer: {
         tagline: "Security is not a product, it's a process. And AuraLink is the architect of that process."
     }
 };
+
+export type Translations = typeof en;

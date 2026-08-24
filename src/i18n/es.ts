@@ -2,6 +2,7 @@ export const es = {
     nav: {
         home: "Inicio",
         services: "Servicios",
+        products: "Productos",
         pricing: "Precios",
         about: "Nosotros",
         intelligence: "Inteligencia",
@@ -67,9 +68,44 @@ export const es = {
             recommendations: "Recomendaciones"
         }
     },
+    merch: {
+        title: "AuraLink",
+        titleGradient: "Merch",
+        description: "Lleva la seguridad contigo. Productos exclusivos diseñados para la comunidad cyber.",
+        products: {
+            cap: {
+                name: "Gorra Táctica",
+                description: "Gorra negra con logo bordado en emerald green. Estilo táctico, ajuste universal.",
+                price: "$35"
+            },
+            tshirt: {
+                name: "Camiseta Zero Day",
+                description: "Algodón premium negro. Diseño 'Zero Day' en el pecho, logo AuraLink en la espalda.",
+                price: "$45"
+            },
+            hoodie: {
+                name: "Hoodie Encrypted",
+                description: "Hoodie negro con diseño de código encriptado. Bolsillo canguro, interior suave.",
+                price: "$75"
+            },
+            keychain: {
+                name: "Llavero Hex",
+                description: "Llavero metálico en forma de chip hexagonal. Acabado negro mate con logo grabado.",
+                price: "$15"
+            },
+            sticker: {
+                name: "Sticker Pack",
+                description: "Pack de 5 stickers resistentes al agua. Logos, icons y frases cyber-security.",
+                price: "$10"
+            },
+            mug: {
+                name: "Taza Terminal",
+                description: "Taza de cerámica negra mate. Diseño de terminal de comandos en verde fósforo.",
+                price: "$25"
+            }
+        }
+    },
     footer: {
         tagline: "La seguridad no es un producto, es un proceso. Y AuraLink es el arquitecto de ese proceso."
     }
 } as const;
-
-export type Translations = typeof es;
