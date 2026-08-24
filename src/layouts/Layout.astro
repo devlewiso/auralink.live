@@ -85,7 +85,7 @@ const {
 
 		<!-- Tars AI Bot (CES) -->
 		<script>
-			window.addEventListener("chat-messenger-loaded", () => {
+			function registerChatContext() {
 				chatSdk.registerContext(
 					chatSdk.prebuilts.ces.createContext({
 						deploymentName:
@@ -96,14 +96,24 @@ const {
 						},
 					}),
 				);
-			});
+			}
+			// The SDK may finish loading (and fire this event) before this
+			// script runs, so check for it directly instead of only
+			// listening for the event — otherwise registerContext never
+			// runs and the widget silently falls back to a broken legacy path.
+			if (window.chatSdk) {
+				registerChatContext();
+			} else {
+				window.addEventListener("chat-messenger-loaded", registerChatContext);
+			}
 		</script>
 		<!-- Update url-allowlist with a comma-separated list of origins allowed to render images -->
-		<chat-messenger url-allowlist="*">
+		<chat-messenger url-allowlist="*" render-mode="slide-in">
 			<chat-messenger-container
-				chat-title="Tars"
+				chat-title="Ryan"
 				chat-title-icon="https://gstatic.com/dialogflow-console/common/assets/ccai-favicons/conversational_agents.png"
 				enable-file-upload
+				enable-audio-input
 			>
 				<chat-reset-session-button
 					slot="titlebar-actions"
@@ -118,8 +128,27 @@ const {
 					slot="titlebar-actions"
 					title-text="Close"
 				></chat-messenger-close-button>
+				<chat-messenger-entry-point-button
+					slot="entry-point"
+				></chat-messenger-entry-point-button>
 			</chat-messenger-container>
 		</chat-messenger>
+		<script>
+			window.addEventListener("chat-messenger-loaded", () => {
+				const entryButton = document.querySelector(
+					"chat-messenger-entry-point-button",
+				);
+				const closeButton = document.querySelector(
+					"chat-messenger-close-button",
+				);
+				entryButton?.addEventListener("click", () => {
+					entryButton.style.display = "none";
+				});
+				closeButton?.addEventListener("click", () => {
+					entryButton.style.display = "";
+				});
+			});
+		</script>
 
 		<style is:global>
 			chat-messenger {
@@ -127,6 +156,15 @@ const {
 				position: fixed;
 				bottom: 16px;
 				right: 16px;
+			}
+
+			chat-messenger-entry-point-button {
+				position: fixed;
+				top: auto;
+				left: auto;
+				bottom: 16px;
+				right: 16px;
+				z-index: 1000;
 			}
 		</style>
 	</body>
